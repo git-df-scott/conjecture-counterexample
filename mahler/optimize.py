@@ -65,7 +65,7 @@ def cma_then_polish(f, x0, m, d, stats, max_evals, seed):
 def make_start(task, rng):
     family = task["family"]
     m, d = task["m"], task["d"]
-    if family == "gauss":
+    if family in ("gauss", "robust"):
         return rng.standard_normal((m, d))
     if family == "hanner":
         base = HANNER[d][task["base"]]()
