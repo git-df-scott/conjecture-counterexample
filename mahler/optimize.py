@@ -14,7 +14,8 @@ import numpy as np
 from scipy.optimize import minimize
 
 from .classify import classify_body
-from .evaluate import EvalStats, make_objective, whiten, CONJECTURED_MIN
+from .evaluate import (EvalStats, make_objective, whiten, CONJECTURED_MIN,
+                       PENALTY_BASE)
 from .hanner import HANNER
 
 
@@ -78,23 +79,31 @@ def run_start(task):
     """Execute one local-search start; returns a JSON-serializable record."""
     t0 = time.perf_counter()
     m, d = task["m"], task["d"]
-    rng = np.random.default_rng(task["seed"])
     stats = EvalStats()
-    f = make_objective(m, d, stats)
-    V0 = make_start(task, rng)
-    x0 = V0.ravel()
-    try:
+    try:  # record failures, never kill the pool worker
+        rng = np.random.default_rng(task["seed"])
+        f = make_objective(m, d, stats)
+        V0 = make_start(task, rng)
         if task["method"] == "cma":
             x, f_best, converged = cma_then_polish(
-                f, x0, m, d, stats, task["max_evals"], task["seed"])
+                f, V0.ravel(), m, d, stats, task["max_evals"], task["seed"])
         else:
             x, f_best, converged = nm_with_restarts(
-                f, x0, m, d, stats, task["max_evals"])
+                f, V0.ravel(), m, d, stats, task["max_evals"])
         Vf = _retract(np.asarray(x), m, d).reshape(m, d)
-        P_final = float(np.exp(f(Vf.ravel())))
-        cls = classify_body(Vf)
-        err = None
-    except Exception as exc:  # record, never kill the pool worker
+        logP = f(Vf.ravel())
+        if logP >= PENALTY_BASE:
+            Vf = None
+            P_final = None
+            cls = {"n_vertices": None, "n_facets": None, "eff_m": None,
+                   "hanner": None}
+            converged = False
+            err = "terminated in penalty region"
+        else:
+            P_final = float(np.exp(logP))
+            cls = classify_body(Vf)
+            err = None
+    except Exception as exc:
         Vf = None
         P_final = None
         cls = {"n_vertices": None, "n_facets": None, "eff_m": None, "hanner": None}

@@ -35,11 +35,18 @@ interior via central symmetry + full rank):
    over the boundary cone decomposition, which is >= vol(conv S), with equality
    iff the multiplicity is 1 a.e.  Over-coverage can only OVER-estimate volume;
    under-coverage is excluded by step 3.  Both vol(K) and vol(K polar) are
-   therefore certified upper bounds that are exact under multiplicity 1, so a
+   therefore certified UPPER BOUNDS that are exact under multiplicity 1, so a
    certified P < 4^d/d! is a sound counterexample certificate (the possible
-   error direction only ever inflates P).  Multiplicity 1 in practice is
-   confirmed by exact agreement between the two independent triangulation paths
-   (qhull-hinted vs hint-free canonical) and by reproducing exact Hanner values.
+   error direction only ever inflates P — the extra simplices still carry
+   genuine facet normals by step 1, so the polar step is unaffected).  A single
+   run does NOT re-verify multiplicity 1 at runtime; therefore any candidate
+   that would beat the conjecture is re-certified through the hint-free
+   canonical path and both triples must agree EXACTLY before the claim is
+   emitted (certify_candidate).  The closure count treats ridges as index
+   (d-1)-subsets; the mod-2 cycle argument therefore relies on candidates
+   coming from a triangulation whose shared ridges match combinatorially,
+   which holds for both candidate generators used here (qhull simplicial
+   output; canonical fan triangulation with global-lexicographic anchors).
 
 5. Facet-normal completeness.  Step 3 also certifies that the deduped set of
    kept-simplex normals is the COMPLETE facet-normal set of conv(S) (a missing
@@ -103,25 +110,36 @@ def _check_symmetric(pts):
 
 
 def _hint_simplices(pts):
-    import numpy as np
-    from scipy.spatial import ConvexHull
+    """Uncertified qhull candidate simplices.  ANY failure (qhull error, float
+    overflow on huge rationals, ...) is converted to CertificationError so the
+    caller's fallback to the hint-free path always engages."""
+    try:
+        import numpy as np
+        from scipy.spatial import ConvexHull
 
-    fpts = np.array([[float(c) for c in p] for p in pts], dtype=float)
-    hull = ConvexHull(fpts)
-    return sorted({tuple(sorted(int(i) for i in s)) for s in hull.simplices})
+        scale = max(abs(c) for p in pts for c in p)
+        fpts = np.array([[float(c / scale) for c in p] for p in pts], dtype=float)
+        hull = ConvexHull(fpts)
+        return sorted({tuple(sorted(int(i) for i in s)) for s in hull.simplices})
+    except Exception as exc:
+        raise CertificationError(f"qhull hint failed: {exc}") from exc
 
 
 def _float_supported_subsets(pts, d):
     """Float-prefiltered d-subsets that plausibly span supporting hyperplanes.
 
     Only a speedup: a wrongly discarded facet subset makes closure/winding FAIL
-    (safe direction).  Kept loose: margin 1e-4 on points scaled to O(1).
+    (safe direction).  Kept loose: margin 1e-4 on points scaled to O(1); the
+    scaling is done exactly over Fraction BEFORE float conversion so huge
+    rational coordinates cannot overflow.  Any failure disables the prefilter.
     """
     import numpy as np
 
-    fpts = np.array([[float(c) for c in p] for p in pts], dtype=float)
-    scale = np.abs(fpts).max()
-    fpts = fpts / scale
+    try:
+        scale = max(abs(c) for p in pts for c in p)
+        fpts = np.array([[float(c / scale) for c in p] for p in pts], dtype=float)
+    except Exception:
+        return list(combinations(range(len(pts)), len(pts[0])))
     n = len(pts)
     out = []
     for combo in combinations(range(n), d):
@@ -469,6 +487,14 @@ def certify_candidate(V_float, d, max_dens=(2**12, 2**16, 2**20)):
             # below the Kuperberg lower bound (~5.16 <= true P always): a bug
             raise CertificationError(
                 f"certified P={P} is below the Kuperberg bound - certifier bug")
+        if P < CONJECTURED_MIN_EXACT:
+            # would-be counterexample: require the independent hint-free path
+            # to reproduce the exact same triple before emitting the claim
+            volK2, volKo2, P2 = certify_volume_product(Vr, d, use_hint=False)
+            if (volK, volKo, P) != (volK2, volKo2, P2):
+                raise CertificationError(
+                    "hint and canonical paths disagree on a would-be "
+                    f"counterexample: {(volK, volKo, P)} vs {(volK2, volKo2, P2)}")
         result = {
             "max_denominator": md,
             "generators": [[str(x) for x in row] for row in Vr],

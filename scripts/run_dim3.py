@@ -110,20 +110,25 @@ def main():
 
     t0 = time.perf_counter()
     n_done = 0
+    run_cpu = 0.0
     capped = False
     with open(jsonl, "a") as out:
         with Pool(processes=args.workers, maxtasksperchild=50) as pool:
             wave = 32
             for i in range(0, len(tasks), wave):
-                if time.perf_counter() - t0 > args.cap_seconds:
+                if capped or time.perf_counter() - t0 > args.cap_seconds:
                     capped = True
                     break
                 for rec in pool.imap_unordered(run_start, tasks[i:i + wave]):
                     out.write(json.dumps(rec) + "\n")
                     out.flush()
                     n_done += 1
+                    run_cpu += rec["wall_s"]
+                    if time.perf_counter() - t0 > args.cap_seconds:
+                        capped = True
+                        break  # in-flight tasks are dropped; resume covers them
                 elapsed = time.perf_counter() - t0
-                print(f"  wave done: {n_done}/{len(tasks)} starts, "
+                print(f"  wave: {n_done}/{len(tasks)} starts done, "
                       f"{elapsed:.0f}s elapsed", flush=True)
     search_wall = time.perf_counter() - t0
 
@@ -142,16 +147,19 @@ def main():
         "n_errors": len(recs) - len(ok),
         "capped": capped,
         "search_wall_s": round(search_wall, 1),
-        "cpu_s_sum": round(sum(r["wall_s"] for r in recs), 1),
+        "cpu_s_this_run": round(run_cpu, 1),
+        "cpu_s_sum_alltime": round(sum(r["wall_s"] for r in recs), 1),
         "total_evals": sum(r["nfev"] for r in recs),
-        "min_P_final": min(r["P_final"] for r in ok),
-        "min_P_seen": min(r["min_P_seen"] for r in ok if r["min_P_seen"]),
+        "min_P_final": min((r["P_final"] for r in ok), default=None),
+        "min_P_seen": min((r["min_P_seen"] for r in ok if r["min_P_seen"]),
+                          default=None),
         "n_triggers_total": sum(r["n_trigger"] for r in recs),
         "n_faults_total": sum(r["n_fault"] for r in recs),
         "conjectured_min": CONJECTURED_MIN,
         "homotopy": hres,
     }
-    summary["speedup_estimate"] = round(summary["cpu_s_sum"] / max(search_wall, 1e-9), 2)
+    summary["speedup_this_run"] = (
+        round(run_cpu / search_wall, 2) if n_done and search_wall > 0 else None)
 
     def agg(pred, recs):
         sel = [r for r in recs if pred(r) and r.get("P_final") is not None]
