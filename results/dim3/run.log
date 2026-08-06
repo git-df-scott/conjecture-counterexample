@@ -1,0 +1,167 @@
+dim-3 checkpoint: 300 starts to run (0 already done), cap 1080s, 4 workers
+  wave: 32/300 starts done, 6s elapsed
+  wave: 64/300 starts done, 20s elapsed
+  wave: 96/300 starts done, 43s elapsed
+  wave: 128/300 starts done, 80s elapsed
+  wave: 160/300 starts done, 146s elapsed
+/usr/local/lib/python3.11/dist-packages/cma/s.py:16: UserWarning: Could not import matplotlib.pyplot, therefore ``cma.plot()`` etc. is not available
+  _warnings.warn('Could not import matplotlib.pyplot, therefore'
+/usr/local/lib/python3.11/dist-packages/cma/s.py:16: UserWarning: Could not import matplotlib.pyplot, therefore ``cma.plot()`` etc. is not available
+  _warnings.warn('Could not import matplotlib.pyplot, therefore'
+/usr/local/lib/python3.11/dist-packages/cma/s.py:16: UserWarning: Could not import matplotlib.pyplot, therefore ``cma.plot()`` etc. is not available
+  _warnings.warn('Could not import matplotlib.pyplot, therefore'
+/usr/local/lib/python3.11/dist-packages/cma/s.py:16: UserWarning: Could not import matplotlib.pyplot, therefore ``cma.plot()`` etc. is not available
+  _warnings.warn('Could not import matplotlib.pyplot, therefore'
+  wave: 192/300 starts done, 196s elapsed
+/usr/local/lib/python3.11/dist-packages/cma/s.py:16: UserWarning: Could not import matplotlib.pyplot, therefore ``cma.plot()`` etc. is not available
+  _warnings.warn('Could not import matplotlib.pyplot, therefore'
+/usr/local/lib/python3.11/dist-packages/cma/s.py:16: UserWarning: Could not import matplotlib.pyplot, therefore ``cma.plot()`` etc. is not available
+  _warnings.warn('Could not import matplotlib.pyplot, therefore'
+/usr/local/lib/python3.11/dist-packages/cma/s.py:16: UserWarning: Could not import matplotlib.pyplot, therefore ``cma.plot()`` etc. is not available
+  _warnings.warn('Could not import matplotlib.pyplot, therefore'
+/usr/local/lib/python3.11/dist-packages/cma/s.py:16: UserWarning: Could not import matplotlib.pyplot, therefore ``cma.plot()`` etc. is not available
+  _warnings.warn('Could not import matplotlib.pyplot, therefore'
+  wave: 224/300 starts done, 235s elapsed
+  wave: 256/300 starts done, 249s elapsed
+  wave: 288/300 starts done, 255s elapsed
+  wave: 300/300 starts done, 257s elapsed
+running homotopy probe...
+{
+ "n_starts_planned": 300,
+ "n_starts_completed": 300,
+ "n_errors": 0,
+ "capped": false,
+ "search_wall_s": 256.7,
+ "cpu_s_this_run": 976.2,
+ "cpu_s_sum_alltime": 976.2,
+ "total_evals": 2798355,
+ "min_P_final": 10.666666666666583,
+ "min_P_seen": 10.666666666666568,
+ "n_triggers_total": 0,
+ "n_faults_total": 0,
+ "conjectured_min": 10.666666666666666,
+ "speedup_this_run": 3.8,
+ "by_family": {
+  "gauss/nm": {
+   "n": 180,
+   "converged_frac": 0.989,
+   "min_P": 10.666666667,
+   "median_P": 10.666666667,
+   "nfev_q50": 9074,
+   "nfev_q90": 30001,
+   "hanner_hist": {
+    "cube3": 31,
+    "oct3": 147,
+    "null": 2
+   }
+  },
+  "gauss/cma": {
+   "n": 40,
+   "converged_frac": 1.0,
+   "min_P": 10.666666667,
+   "median_P": 10.666666667,
+   "nfev_q50": 10669,
+   "nfev_q90": 18343,
+   "hanner_hist": {
+    "cube3": 3,
+    "oct3": 37,
+    "null": 0
+   }
+  },
+  "hanner/nm": {
+   "n": 80,
+   "converged_frac": 1.0,
+   "min_P": 10.666666667,
+   "median_P": 10.666666667,
+   "nfev_q50": 2919,
+   "nfev_q90": 6113,
+   "hanner_hist": {
+    "cube3": 14,
+    "oct3": 66,
+    "null": 0
+   }
+  }
+ },
+ "by_m": {
+  "3": {
+   "n": 70,
+   "converged_frac": 1.0,
+   "min_P": 10.666666667,
+   "median_P": 10.666666667,
+   "nfev_q50": 1750,
+   "nfev_q90": 1823,
+   "hanner_hist": {
+    "cube3": 0,
+    "oct3": 70,
+    "null": 0
+   }
+  },
+  "4": {
+   "n": 80,
+   "converged_frac": 1.0,
+   "min_P": 10.666666667,
+   "median_P": 10.666666667,
+   "nfev_q50": 3975,
+   "nfev_q90": 6181,
+   "hanner_hist": {
+    "cube3": 15,
+    "oct3": 65,
+    "null": 0
+   }
+  },
+  "5": {
+   "n": 30,
+   "converged_frac": 1.0,
+   "min_P": 10.666666667,
+   "median_P": 10.666666667,
+   "nfev_q50": 8865,
+   "nfev_q90": 9393,
+   "hanner_hist": {
+    "cube3": 4,
+    "oct3": 26,
+    "null": 0
+   }
+  },
+  "6": {
+   "n": 40,
+   "converged_frac": 1.0,
+   "min_P": 10.666666667,
+   "median_P": 10.666666667,
+   "nfev_q50": 12526,
+   "nfev_q90": 13359,
+   "hanner_hist": {
+    "cube3": 7,
+    "oct3": 33,
+    "null": 0
+   }
+  },
+  "8": {
+   "n": 40,
+   "converged_frac": 0.975,
+   "min_P": 10.666666667,
+   "median_P": 10.666666667,
+   "nfev_q50": 21799,
+   "nfev_q90": 23960,
+   "hanner_hist": {
+    "cube3": 13,
+    "oct3": 26,
+    "null": 1
+   }
+  },
+  "10": {
+   "n": 40,
+   "converged_frac": 0.975,
+   "min_P": 10.666666667,
+   "median_P": 10.666666667,
+   "nfev_q50": 30001,
+   "nfev_q90": 30001,
+   "hanner_hist": {
+    "cube3": 9,
+    "oct3": 30,
+    "null": 1
+   }
+  }
+ }
+}
+homotopy: ridge peak P = 12.000000 at s = 0.500; descents -> ['cube3', 'cube3', 'cube3']
+wrote summary.json and best_bodies.json
