@@ -1,0 +1,34 @@
+{
+ "best_excess": -2,
+ "branches": {
+  "k2": {
+   "best_excess": -4,
+   "nodes": 7828352,
+   "tested": 7778168
+  },
+  "k3": {
+   "best_excess": -2,
+   "nodes": 8597009005,
+   "tested": 8594179213
+  },
+  "k4": {
+   "best_excess": -7,
+   "nodes": 32922640337,
+   "tested": 32917278117
+  },
+  "k5": {
+   "best_excess": -32,
+   "nodes": 1135957,
+   "tested": 1048574
+  },
+  "k6": {
+   "best_excess": -56,
+   "nodes": 64,
+   "tested": 1
+  }
+ },
+ "n": 7,
+ "total_nodes": 41528613715,
+ "total_tested": 41520284073,
+ "violations": 0
+}
