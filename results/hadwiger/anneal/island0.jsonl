@@ -2426,3 +2426,16 @@
 {"event":"rollback","it":1649,"score":0.0}
 {"event":"rollback","it":1666,"score":0.0}
 {"event":"rollback","it":1685,"score":0.0}
+{"event":"rollback","it":1700,"score":0.0}
+{"event":"rollback","it":1719,"score":0.0}
+{"event":"rollback","it":1736,"score":0.0}
+{"event":"rollback","it":1763,"score":1.0}
+{"event":"chi7_state","g6":"X~~zztj^B[U_Qw\\_HpARCQGdiGJw?Ew??Ja?n???[P?HP?_A@??","minor":"yes","detail":{"path":"fast"}}
+{"event":"rollback","it":1785,"score":0.0}
+{"event":"rollback","it":1811,"score":0.0}
+{"event":"rollback","it":1831,"score":0.0}
+{"event":"rollback","it":1857,"score":0.0}
+{"event":"chi7_state","g6":"Xz~zztj^B\\V_QwH?HpARCQGdiGBw?Ew??Aa?n@??[P?HP??S_O?","minor":"yes","detail":{"path":"fast"}}
+{"event":"rollback","it":1891,"score":1.0}
+{"event":"rollback","it":1912,"score":0.0}
+{"event":"rollback","it":1930,"score":0.0}
