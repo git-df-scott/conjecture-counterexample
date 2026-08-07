@@ -41,15 +41,18 @@ run_shards() { # name mod script extra-args...
 
 # Priority chain. Order: cheapest certain ground first, then the open
 # frontier by expected value per CPU-hour.
+# Short phases first, and fine shards for the geng-tree-heavy n=17,18
+# classes: container idle-reclaims kill running processes, so each shard
+# must fit inside one attended stretch; manifests resume the rest.
 run_shards sweep10  1 run_sweep.py  --n 10
 run_shards sweep11  1 run_sweep.py  --n 11
+run_shards sweep12  4 run_sweep.py  --n 12
 run_shards alpha13  4 run_alpha2.py --n 13
 run_shards alpha14  4 run_alpha2.py --n 14
 run_shards alpha15  4 run_alpha2.py --n 15
 run_shards alpha16  4 run_alpha2.py --n 16
-run_shards alpha17  2 run_alpha2.py --n 17
-run_shards alpha18  2 run_alpha2.py --n 18
-run_shards sweep12  4 run_sweep.py  --n 12
+run_shards alpha17  8 run_alpha2.py --n 17
+run_shards alpha18  8 run_alpha2.py --n 18
 run_shards sweep13  4 run_sweep.py  --n 13
 
 wait
