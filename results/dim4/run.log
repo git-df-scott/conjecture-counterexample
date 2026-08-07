@@ -22,3 +22,4 @@ dim-4 search: 521 starts to run (0 already done), cap 10800s, 4 workers
 /usr/local/lib/python3.11/dist-packages/cma/s.py:16: UserWarning: Could not import matplotlib.pyplot, therefore ``cma.plot()`` etc. is not available
   _warnings.warn('Could not import matplotlib.pyplot, therefore'
   wave: 224/521 starts done, 678s elapsed
+  wave: 256/521 starts done, 949s elapsed
