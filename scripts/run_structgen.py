@@ -27,9 +27,9 @@ import time
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from hadwiger import family
-from hadwiger.coloring import dsatur, sat_kcolorable
+from hadwiger.coloring import sat_kcolorable
 from hadwiger.graphs import edge_count, to_graph6
-from hadwiger.minor import exact_minor_decision, fast_minor_search
+from hadwiger.minor import exact_minor_decision
 from hadwiger.runner_util import (jsonl_append, record_candidate,
                                   results_path, stop_requested)
 

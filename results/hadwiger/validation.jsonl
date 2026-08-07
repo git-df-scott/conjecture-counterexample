@@ -192,3 +192,53 @@
 {"ts":"2026-08-07T04:52:06Z","check":"clear-noheurwitness-5tree-16-1","ok":true,"detail":"heuristic must not fabricate a witness"}
 {"ts":"2026-08-07T04:52:28Z","check":"clear-planar4x5+2apex","ok":true,"detail":"direct=no(22.2s) cegar=skipped(n>14) n=22 e=84"}
 {"ts":"2026-08-07T04:52:28Z","check":"clear-noheurwitness-planar4x5+2apex","ok":true,"detail":"heuristic must not fabricate a witness"}
+{"ts":"2026-08-07T04:59:00Z","check":"crossval-3way","ok":true,"detail":"400 graphs, 0 mismatches"}
+{"ts":"2026-08-07T04:59:00Z","check":"verifier-rejects-corrupt","ok":true,"detail":""}
+{"ts":"2026-08-07T04:59:00Z","check":"coloring-verifier-rejects","ok":true,"detail":""}
+{"ts":"2026-08-07T04:59:00Z","check":"verifier-rejects-disconnected","ok":true,"detail":""}
+{"ts":"2026-08-07T05:10:40Z","check":"graph6-roundtrip","ok":true,"detail":"200 random graphs"}
+{"ts":"2026-08-07T05:10:40Z","check":"graph6-roundtrip-large-n","ok":true,"detail":"n=91"}
+{"ts":"2026-08-07T05:10:40Z","check":"geng-n6-count","ok":true,"detail":"got 156 (A000088: 156)"}
+{"ts":"2026-08-07T05:10:40Z","check":"geng-t-trianglefree","ok":true,"detail":"410 graphs on 8 vertices"}
+{"ts":"2026-08-07T05:10:40Z","check":"chi-K7","ok":true,"detail":"expected chi=7"}
+{"ts":"2026-08-07T05:10:40Z","check":"chi-C5","ok":true,"detail":"expected chi=3"}
+{"ts":"2026-08-07T05:10:40Z","check":"chi-Petersen","ok":true,"detail":"expected chi=3"}
+{"ts":"2026-08-07T05:10:40Z","check":"chi-Kneser(7,2)","ok":true,"detail":"expected chi=5"}
+{"ts":"2026-08-07T05:10:40Z","check":"chi-Kneser(8,2)","ok":true,"detail":"expected chi=6"}
+{"ts":"2026-08-07T05:10:40Z","check":"chi-Mycielski(C5)=Groetzsch","ok":true,"detail":"expected chi=4"}
+{"ts":"2026-08-07T05:10:40Z","check":"chi-Mycielski^2(C5)","ok":true,"detail":"expected chi=5"}
+{"ts":"2026-08-07T05:10:40Z","check":"detect-K7","ok":true,"detail":"n=7"}
+{"ts":"2026-08-07T05:10:40Z","check":"detect-K8","ok":true,"detail":"n=8"}
+{"ts":"2026-08-07T05:10:40Z","check":"detect-K10-PM","ok":true,"detail":"n=10"}
+{"ts":"2026-08-07T05:10:40Z","check":"detect-K7-1subdivision","ok":true,"detail":"n=28"}
+{"ts":"2026-08-07T05:10:40Z","check":"detect-mader-12-0","ok":true,"detail":"e=5n-14 forces K7 minor (Mader)"}
+{"ts":"2026-08-07T05:10:40Z","check":"detect-mader-12-1","ok":true,"detail":"e=5n-14 forces K7 minor (Mader)"}
+{"ts":"2026-08-07T05:10:40Z","check":"detect-mader-16-0","ok":true,"detail":"e=5n-14 forces K7 minor (Mader)"}
+{"ts":"2026-08-07T05:10:40Z","check":"detect-mader-16-1","ok":true,"detail":"e=5n-14 forces K7 minor (Mader)"}
+{"ts":"2026-08-07T05:10:40Z","check":"detect-mader-20-0","ok":true,"detail":"e=5n-14 forces K7 minor (Mader)"}
+{"ts":"2026-08-07T05:10:40Z","check":"detect-mader-20-1","ok":true,"detail":"e=5n-14 forces K7 minor (Mader)"}
+{"ts":"2026-08-07T05:10:40Z","check":"exact-yes-K7","ok":true,"detail":"direct=yes cegar=yes"}
+{"ts":"2026-08-07T05:10:40Z","check":"exact-yes-K8","ok":true,"detail":"direct=yes cegar=yes"}
+{"ts":"2026-08-07T05:10:40Z","check":"exact-yes-K7-1subdivision","ok":true,"detail":"direct=yes cegar=yes"}
+{"ts":"2026-08-07T05:10:40Z","check":"verify-candidate-rejects-K7","ok":true,"detail":"chi>=7 but minor present"}
+{"ts":"2026-08-07T05:10:40Z","check":"tw-shortcut-fires-3x7+2apex","ok":true,"detail":"n=23"}
+{"ts":"2026-08-07T05:10:40Z","check":"tw-shortcut-fires-5tree-10","ok":true,"detail":""}
+{"ts":"2026-08-07T05:10:40Z","check":"tw-shortcut-fires-5tree-14","ok":true,"detail":""}
+{"ts":"2026-08-07T05:10:40Z","check":"tw-shortcut-refuses-K7","ok":true,"detail":""}
+{"ts":"2026-08-07T05:10:40Z","check":"tw-shortcut-refuses-mader16","ok":true,"detail":""}
+{"ts":"2026-08-07T05:10:40Z","check":"clear-K6","ok":true,"detail":"direct=no(0.0s) cegar=no(0.0s) n=6 e=15"}
+{"ts":"2026-08-07T05:10:40Z","check":"clear-noheurwitness-K6","ok":true,"detail":"heuristic must not fabricate a witness"}
+{"ts":"2026-08-07T05:10:41Z","check":"clear-5tree-10-0","ok":true,"detail":"direct=no(0.0s) cegar=no(1.1s) n=10 e=35"}
+{"ts":"2026-08-07T05:10:41Z","check":"clear-noheurwitness-5tree-10-0","ok":true,"detail":"heuristic must not fabricate a witness"}
+{"ts":"2026-08-07T05:10:42Z","check":"clear-5tree-10-1","ok":true,"detail":"direct=no(0.0s) cegar=no(0.9s) n=10 e=35"}
+{"ts":"2026-08-07T05:10:42Z","check":"clear-noheurwitness-5tree-10-1","ok":true,"detail":"heuristic must not fabricate a witness"}
+{"ts":"2026-08-07T05:10:51Z","check":"clear-5tree-13-0","ok":true,"detail":"direct=no(0.0s) cegar=no(8.9s) n=13 e=50"}
+{"ts":"2026-08-07T05:10:51Z","check":"clear-noheurwitness-5tree-13-0","ok":true,"detail":"heuristic must not fabricate a witness"}
+{"ts":"2026-08-07T05:10:58Z","check":"clear-5tree-13-1","ok":true,"detail":"direct=no(0.0s) cegar=no(6.7s) n=13 e=50"}
+{"ts":"2026-08-07T05:10:58Z","check":"clear-noheurwitness-5tree-13-1","ok":true,"detail":"heuristic must not fabricate a witness"}
+{"ts":"2026-08-07T05:11:23Z","check":"clear-planar4x5+2apex","ok":true,"detail":"direct=no(24.8s) cegar=skipped(n>14) n=22 e=84"}
+{"ts":"2026-08-07T05:11:23Z","check":"clear-noheurwitness-planar4x5+2apex","ok":true,"detail":"heuristic must not fabricate a witness"}
+{"ts":"2026-08-07T05:12:14Z","check":"crossval-3way","ok":true,"detail":"60 graphs, 0 mismatches"}
+{"ts":"2026-08-07T05:12:14Z","check":"verifier-rejects-corrupt","ok":true,"detail":""}
+{"ts":"2026-08-07T05:12:14Z","check":"coloring-verifier-rejects","ok":true,"detail":""}
+{"ts":"2026-08-07T05:12:14Z","check":"verifier-rejects-disconnected","ok":true,"detail":""}

@@ -111,7 +111,7 @@ resumes without loss.
 ## Honest scope
 
 Lanes 1-2 are exhaustive over sharply-defined but small slices (n <= 13
-resp. 15). Lanes 3-4 are heuristic exploration. None of this
+resp. n = 13..18, the latter being the whole open range for alpha <= 2). Lanes 3-4 are heuristic exploration. None of this
 constitutes evidence about Hadwiger's conjecture at large: if a
 counterexample exists it is widely expected to be large, and this
 search covers a vanishing fraction of the space a name like "Hadwiger

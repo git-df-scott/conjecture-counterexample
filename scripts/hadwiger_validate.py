@@ -19,9 +19,8 @@ sys.path.insert(0, __import__("os").path.dirname(__import__("os").path.dirname(
     __import__("os").path.abspath(__file__))))
 
 from hadwiger import family
-from hadwiger.coloring import dsatur, sat_kcolorable, verify_coloring
-from hadwiger.graphs import (complement, edge_count, parse_graph6,
-                             random_gnp, to_graph6)
+from hadwiger.coloring import sat_kcolorable, verify_coloring
+from hadwiger.graphs import (edge_count, parse_graph6, random_gnp, to_graph6)
 from hadwiger.minor import (bb_minor, fast_minor_search, sat_minor_cegar,
                             sat_minor_direct, treewidth_le5, verify_k7_model)
 from hadwiger.runner_util import jsonl_append, results_path
@@ -81,8 +80,7 @@ def main():
             break
     else:
         check("graph6-roundtrip", True, "200 random graphs")
-    n95, adj95 = family.gen_mycielski(5, family.cycle(5)[1], 9)  # n=46 >= 63? no
-    big = family.subdivide_all_edges(*family.complete(13))  # n = 13+78 = 91 > 62
+    big = family.subdivide_all_edges(*family.complete(13))  # n = 91: long g6 format
     nb, adjb = big
     n2, adj2 = parse_graph6(to_graph6(nb, adjb))
     check("graph6-roundtrip-large-n", (n2, adj2) == (nb, adjb), f"n={nb}")
@@ -129,7 +127,7 @@ def main():
     detect = [
         ("K7", family.complete(7)),
         ("K8", family.complete(8)),
-        ("K9-PM", family.complete_minus_perfect_matching(9 + 1)),  # K10-PM
+        ("K10-PM", family.complete_minus_perfect_matching(10)),
         ("K7-1subdivision", family.subdivide_all_edges(*family.complete(7))),
     ]
     for name, (n, adj) in detect:
@@ -152,6 +150,16 @@ def main():
     for name, (n, adj) in detect[:2] + [detect[3]]:
         ok, d = exact_yes(n, adj)
         check(f"exact-yes-{name}", ok, d)
+    # verify_candidate's aggregation on a known non-candidate: K7 has
+    # chi=7 but obviously has a K7 minor => must NOT be confirmed
+    import os
+    import subprocess as _sp
+    from hadwiger.graphs import to_graph6 as _tg
+    p = _sp.run([sys.executable, os.path.join(os.path.dirname(
+        os.path.abspath(__file__)), "verify_candidate.py"),
+        _tg(*family.complete(7))], capture_output=True, text=True)
+    check("verify-candidate-rejects-K7",
+          '"VERDICT": "NOT CONFIRMED"' in p.stdout, "chi>=7 but minor present")
     if not args.quick:
         n, adj = family.kneser(9, 2)
         sets = fast_minor_search(n, adj, rng, use_minorminer=True)

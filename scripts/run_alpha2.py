@@ -26,10 +26,9 @@ import time
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from hadwiger.coloring import dsatur
 from hadwiger.graphs import complement, edge_count, parse_graph6, to_graph6
 from hadwiger.minor import (exact_minor_decision, fast_minor_search,
-                            sat_minor_cegar, sat_minor_direct)
+                            greedy_contraction_minor, minorminer_find)
 from hadwiger.runner_util import (done_shards, jsonl_append, record_candidate,
                                   results_path, stop_requested)
 
@@ -109,8 +108,11 @@ def main():
             stats["fast_clique" if all(bin(s).count("1") == 1 for s in sets)
                   else "fast_greedy"] += 1
             continue
-        sets = fast_minor_search(cn, adj, rng, greedy_tries=24,
-                                 use_minorminer=True, mm_tries=20)
+        # escalation: only the *additional* work (more greedy restarts,
+        # then minorminer) — the exact clique search already ran above
+        sets = greedy_contraction_minor(cn, adj, rng, tries=20)
+        if sets is None:
+            sets = minorminer_find(cn, adj, tries=20)
         if sets is not None:
             stats["fast_mm"] += 1
             continue

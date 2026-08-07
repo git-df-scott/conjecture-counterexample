@@ -47,10 +47,13 @@ def main():
         except Exception as exc:
             chi[f"sat6_{solver}"] = {"error": str(exc)}
     report["chi_ge_7"] = chi
-    chi_ok = all(v.get("result") is False for k, v in chi.items()
-                 if k.startswith("sat6_") and "result" in v) and \
-        sum(1 for k in chi if k.startswith("sat6_")) >= 2 and \
-        not chi["dsatur_6col_found"]
+    # Count only explicit solver verdicts; errors are NOT successes. At
+    # least two independent solver families must return UNSAT and none
+    # may return SAT — a vacuously-true all() must never confirm.
+    sat6 = [v["result"] for k, v in chi.items()
+            if k.startswith("sat6_") and "result" in v]
+    chi_ok = (sat6.count(False) >= 2 and True not in sat6
+              and not chi["dsatur_6col_found"])
 
     minor = {}
     minor["treewidth_le5"] = treewidth_le5(n, adj)  # must be False
@@ -70,9 +73,12 @@ def main():
                    "wall_s": round(time.time() - t0, 1)}
     minor["minorminer_embedding"] = minorminer_find(n, adj, tries=200) is not None
     report["no_k7_minor"] = minor
+    # Same principle: both direct-encoding solver runs must have produced
+    # an explicit 'no'; errors or absences fail the verification.
+    direct = [v["result"] for k, v in minor.items()
+              if k.startswith("direct_") and "result" in v]
     minor_ok = (not minor["treewidth_le5"]
-                and all(v.get("result") == "no" for k, v in minor.items()
-                        if k.startswith("direct_") and "result" in v)
+                and direct.count("no") >= 2 and "yes" not in direct
                 and minor["cegar"]["result"] == "no"
                 and minor["bb"]["result"] in ("no", "unknown")
                 and not minor["minorminer_embedding"])

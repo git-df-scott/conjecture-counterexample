@@ -1,1 +1,2 @@
 {"shard":[13,0,256,28,42],"status":"done","stats":{"total":277,"fast_clique":135,"fast_greedy":17,"fast_mm":125,"exact_yes":0,"sanity_alpha_fail":0},"wall_s":1.2,"rate_per_s":231}
+{"shard":[13,3,512,28,42],"status":"done","stats":{"total":1242,"fast_clique":1136,"fast_greedy":15,"fast_mm":91,"exact_yes":0,"sanity_alpha_fail":0},"wall_s":0.8,"rate_per_s":1552}
