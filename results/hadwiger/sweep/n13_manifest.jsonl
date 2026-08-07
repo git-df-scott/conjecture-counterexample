@@ -68,3 +68,5 @@
 {"shard":[13,67,256],"status":"done","rc":0,"stats":{"total":7452219,"disconnected":0,"dominating":9390,"colored6":7423602,"sat_colored6":18990,"chi_ge_7":237},"wall_s":623.8,"rate_per_s":11946}
 {"shard":[13,69,256],"status":"done","rc":0,"stats":{"total":7193552,"disconnected":0,"dominating":10347,"colored6":7163225,"sat_colored6":19822,"chi_ge_7":158},"wall_s":598.7,"rate_per_s":12015}
 {"shard":[13,68,256],"status":"done","rc":0,"stats":{"total":7909125,"disconnected":0,"dominating":14462,"colored6":7868308,"sat_colored6":26188,"chi_ge_7":167},"wall_s":661.2,"rate_per_s":11962}
+{"shard":[13,70,256],"status":"done","rc":0,"stats":{"total":6565274,"disconnected":0,"dominating":15541,"colored6":6531918,"sat_colored6":17680,"chi_ge_7":135},"wall_s":551.6,"rate_per_s":11902}
+{"shard":[13,71,256],"status":"done","rc":0,"stats":{"total":5973614,"disconnected":0,"dominating":9409,"colored6":5949415,"sat_colored6":14677,"chi_ge_7":113},"wall_s":492.7,"rate_per_s":12124}
