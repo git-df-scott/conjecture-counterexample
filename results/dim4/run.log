@@ -1,2 +1,24 @@
 dim-4 search: 521 starts to run (0 already done), cap 10800s, 4 workers
   wave: 32/521 starts done, 22s elapsed
+  wave: 64/521 starts done, 89s elapsed
+  wave: 96/521 starts done, 180s elapsed
+/usr/local/lib/python3.11/dist-packages/cma/s.py:16: UserWarning: Could not import matplotlib.pyplot, therefore ``cma.plot()`` etc. is not available
+  _warnings.warn('Could not import matplotlib.pyplot, therefore'
+/usr/local/lib/python3.11/dist-packages/cma/s.py:16: UserWarning: Could not import matplotlib.pyplot, therefore ``cma.plot()`` etc. is not available
+  _warnings.warn('Could not import matplotlib.pyplot, therefore'
+/usr/local/lib/python3.11/dist-packages/cma/s.py:16: UserWarning: Could not import matplotlib.pyplot, therefore ``cma.plot()`` etc. is not available
+  _warnings.warn('Could not import matplotlib.pyplot, therefore'
+/usr/local/lib/python3.11/dist-packages/cma/s.py:16: UserWarning: Could not import matplotlib.pyplot, therefore ``cma.plot()`` etc. is not available
+  _warnings.warn('Could not import matplotlib.pyplot, therefore'
+  wave: 128/521 starts done, 249s elapsed
+  wave: 160/521 starts done, 343s elapsed
+  wave: 192/521 starts done, 482s elapsed
+/usr/local/lib/python3.11/dist-packages/cma/s.py:16: UserWarning: Could not import matplotlib.pyplot, therefore ``cma.plot()`` etc. is not available
+  _warnings.warn('Could not import matplotlib.pyplot, therefore'
+/usr/local/lib/python3.11/dist-packages/cma/s.py:16: UserWarning: Could not import matplotlib.pyplot, therefore ``cma.plot()`` etc. is not available
+  _warnings.warn('Could not import matplotlib.pyplot, therefore'
+/usr/local/lib/python3.11/dist-packages/cma/s.py:16: UserWarning: Could not import matplotlib.pyplot, therefore ``cma.plot()`` etc. is not available
+  _warnings.warn('Could not import matplotlib.pyplot, therefore'
+/usr/local/lib/python3.11/dist-packages/cma/s.py:16: UserWarning: Could not import matplotlib.pyplot, therefore ``cma.plot()`` etc. is not available
+  _warnings.warn('Could not import matplotlib.pyplot, therefore'
+  wave: 224/521 starts done, 678s elapsed
