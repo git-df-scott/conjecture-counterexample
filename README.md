@@ -1,3 +1,13 @@
+# Conjecture counterexample searches
+
+Two independent projects share this repository:
+
+* **Mahler conjecture (dim 4)** — below, the original project.
+* **Hadwiger conjecture (t=7)** — `hadwiger/` package,
+  `scripts/hadwiger_validate.py`, `scripts/run_{sweep,alpha2,anneal,structgen}.py`;
+  methodology, soundness invariants, and honest-scope statement in
+  `hadwiger/README.md`.
+
 # Mahler conjecture (dim 4): counterexample search with exact certification
 
 The Mahler conjecture states that for a centrally symmetric convex body
