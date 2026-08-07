@@ -63,7 +63,7 @@ static uint64_t downA[MAXDEPTH + 1][MAXW];
 static int and_st[MAXDEPTH + 1], or_st[MAXDEPTH + 1];
 static int candbuf[MAXDEPTH][300];
 
-static int mode_test, fixk;
+static int mode_test, fixk, maxm = MAXDEPTH;
 static unsigned long long nodes, tested, ties, violations;
 static long long best_excess = LLONG_MIN;
 static int best_gens[MAXDEPTH], best_m;
@@ -131,7 +131,7 @@ static void dfs(int m, const int *cand, int ncand) {
             int t = cand[cj], u = t & s;
             if (u && u != s && u != t) nc[nn++] = t;
         }
-        if (nn) dfs(m + 1, nc, nn);
+        if (nn && m + 1 < maxm) dfs(m + 1, nc, nn);
     }
 }
 
@@ -146,7 +146,10 @@ int main(int argc, char **argv) {
         if (argc < 4) { fprintf(stderr, "test mode needs k\n"); return 2; }
         fixk = atoi(argv[3]);
         if (fixk < 2 || fixk > N - 1) { fprintf(stderr, "bad k\n"); return 2; }
-        if (argc > 4) second = atoi(argv[4]);
+        if (argc > 4) second = atoi(argv[4]);      /* -1 = unrestricted */
+        if (second < 0) second = -1;
+        if (argc > 5) maxm = atoi(argv[5]);        /* cap antichain size */
+        if (maxm < 3 || maxm > MAXDEPTH) maxm = MAXDEPTH;
     }
 
     for (int s = 0; s < NM; s++) {
@@ -205,9 +208,9 @@ int main(int argc, char **argv) {
         dfs(1, cand1, nc1);
     }
 
-    printf("{\"mode\":\"test\",\"n\":%d,\"k\":%d,\"second\":%d,\"nodes\":%llu,"
+    printf("{\"mode\":\"test\",\"n\":%d,\"k\":%d,\"second\":%d,\"maxm\":%d,\"nodes\":%llu,"
            "\"tested\":%llu,\"ties\":%llu,\"violations\":%llu,\"best_excess\":%lld,"
-           "\"best_example\":\"", N, fixk, second, nodes, tested, ties, violations,
+           "\"best_example\":\"", N, fixk, second, maxm, nodes, tested, ties, violations,
            tested ? best_excess : -9999);
     if (tested) print_antichain(stdout, best_gens, best_m);
     printf("\"}\n");
