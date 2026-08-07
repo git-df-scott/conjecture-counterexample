@@ -23,3 +23,261 @@ dim-4 search: 521 starts to run (0 already done), cap 10800s, 4 workers
   _warnings.warn('Could not import matplotlib.pyplot, therefore'
   wave: 224/521 starts done, 678s elapsed
   wave: 256/521 starts done, 949s elapsed
+  wave: 288/521 starts done, 1261s elapsed
+  wave: 320/521 starts done, 1496s elapsed
+  wave: 352/521 starts done, 1633s elapsed
+  wave: 384/521 starts done, 1658s elapsed
+/usr/local/lib/python3.11/dist-packages/cma/s.py:16: UserWarning: Could not import matplotlib.pyplot, therefore ``cma.plot()`` etc. is not available
+  _warnings.warn('Could not import matplotlib.pyplot, therefore'
+/usr/local/lib/python3.11/dist-packages/cma/s.py:16: UserWarning: Could not import matplotlib.pyplot, therefore ``cma.plot()`` etc. is not available
+  _warnings.warn('Could not import matplotlib.pyplot, therefore'
+/usr/local/lib/python3.11/dist-packages/cma/s.py:16: UserWarning: Could not import matplotlib.pyplot, therefore ``cma.plot()`` etc. is not available
+  _warnings.warn('Could not import matplotlib.pyplot, therefore'
+/usr/local/lib/python3.11/dist-packages/cma/s.py:16: UserWarning: Could not import matplotlib.pyplot, therefore ``cma.plot()`` etc. is not available
+  _warnings.warn('Could not import matplotlib.pyplot, therefore'
+  wave: 416/521 starts done, 1695s elapsed
+  wave: 448/521 starts done, 1756s elapsed
+  wave: 480/521 starts done, 1825s elapsed
+  wave: 512/521 starts done, 2078s elapsed
+  wave: 521/521 starts done, 2210s elapsed
+running homotopy probes (all Hanner pairs)...
+/usr/local/lib/python3.11/dist-packages/cma/s.py:16: UserWarning: Could not import matplotlib.pyplot, therefore ``cma.plot()`` etc. is not available
+  _warnings.warn('Could not import matplotlib.pyplot, therefore'
+  homotopy cube4<->cross4: peak P = 13.846106 at s = 0.375; descents -> ['cross4', 'cross4']
+  homotopy cube4<->octprism4: peak P = 13.144617 at s = 0.475; descents -> ['cross4', 'cross4']
+  homotopy cube4<->cubebipyr4: peak P = 12.210111 at s = 0.225; descents -> ['cross4', 'cross4']
+  homotopy cross4<->octprism4: peak P = 12.214570 at s = 0.625; descents -> ['cross4', 'cross4']
+  homotopy cross4<->cubebipyr4: peak P = 11.995395 at s = 0.650; descents -> ['cross4', 'cross4']
+  homotopy octprism4<->cubebipyr4: peak P = 12.539738 at s = 0.375; descents -> ['cross4', 'cross4']
+{
+ "n_starts_planned": 521,
+ "n_starts_completed": 521,
+ "n_errors": 0,
+ "capped": false,
+ "aborted_on_trigger": null,
+ "search_wall_s": 2210.0,
+ "cpu_s_this_run": 8043.2,
+ "cpu_s_sum_alltime": 8043.2,
+ "total_evals": 12152717,
+ "min_P_final": 10.666666666666375,
+ "min_P_seen": 10.66666666666635,
+ "n_triggers_total": 0,
+ "n_faults_total": 188,
+ "conjectured_min": 10.666666666666666,
+ "speedup_this_run": 3.64,
+ "by_family": {
+  "gauss/nm": {
+   "n": 105,
+   "converged_frac": 0.99,
+   "min_P": 10.666666667,
+   "median_P": 10.666666667,
+   "nfev_q50": 12675,
+   "nfev_q90": 21668,
+   "hanner_hist": {
+    "cube4": 0,
+    "cross4": 83,
+    "octprism4": 0,
+    "cubebipyr4": 15,
+    "None": 7
+   }
+  },
+  "gauss/cma": {
+   "n": 200,
+   "converged_frac": 0.99,
+   "min_P": 10.666666667,
+   "median_P": 10.666666667,
+   "nfev_q50": 29235,
+   "nfev_q90": 60001,
+   "hanner_hist": {
+    "cube4": 0,
+    "cross4": 166,
+    "octprism4": 3,
+    "cubebipyr4": 31,
+    "None": 0
+   }
+  },
+  "hanner/nm": {
+   "n": 96,
+   "converged_frac": 1.0,
+   "min_P": 10.666666667,
+   "median_P": 10.666666667,
+   "nfev_q50": 7532,
+   "nfev_q90": 15806,
+   "hanner_hist": {
+    "cube4": 0,
+    "cross4": 80,
+    "octprism4": 0,
+    "cubebipyr4": 16,
+    "None": 0
+   }
+  },
+  "hanner/cma": {
+   "n": 96,
+   "converged_frac": 1.0,
+   "min_P": 10.666666667,
+   "median_P": 10.666666667,
+   "nfev_q50": 17921,
+   "nfev_q90": 40001,
+   "hanner_hist": {
+    "cube4": 0,
+    "cross4": 82,
+    "octprism4": 1,
+    "cubebipyr4": 13,
+    "None": 0
+   }
+  },
+  "robust/cma": {
+   "n": 24,
+   "converged_frac": 0.958,
+   "min_P": 10.666666667,
+   "median_P": 10.666666667,
+   "nfev_q50": 60001,
+   "nfev_q90": 60001,
+   "hanner_hist": {
+    "cube4": 0,
+    "cross4": 16,
+    "octprism4": 2,
+    "cubebipyr4": 6,
+    "None": 0
+   }
+  }
+ },
+ "by_m": {
+  "4": {
+   "n": 83,
+   "converged_frac": 1.0,
+   "min_P": 10.666666667,
+   "median_P": 10.666666667,
+   "nfev_q50": 5108,
+   "nfev_q90": 5357,
+   "hanner_hist": {
+    "cube4": 0,
+    "cross4": 83,
+    "octprism4": 0,
+    "cubebipyr4": 0,
+    "None": 0
+   }
+  },
+  "5": {
+   "n": 83,
+   "converged_frac": 1.0,
+   "min_P": 10.666666667,
+   "median_P": 10.666666667,
+   "nfev_q50": 15118,
+   "nfev_q90": 16780,
+   "hanner_hist": {
+    "cube4": 0,
+    "cross4": 61,
+    "octprism4": 0,
+    "cubebipyr4": 20,
+    "None": 2
+   }
+  },
+  "6": {
+   "n": 123,
+   "converged_frac": 0.992,
+   "min_P": 10.666666667,
+   "median_P": 10.666666667,
+   "nfev_q50": 11390,
+   "nfev_q90": 21681,
+   "hanner_hist": {
+    "cube4": 0,
+    "cross4": 103,
+    "octprism4": 0,
+    "cubebipyr4": 15,
+    "None": 5
+   }
+  },
+  "8": {
+   "n": 88,
+   "converged_frac": 1.0,
+   "min_P": 10.666666667,
+   "median_P": 10.666666667,
+   "nfev_q50": 18886,
+   "nfev_q90": 40001,
+   "hanner_hist": {
+    "cube4": 0,
+    "cross4": 68,
+    "octprism4": 2,
+    "cubebipyr4": 18,
+    "None": 0
+   }
+  },
+  "10": {
+   "n": 40,
+   "converged_frac": 1.0,
+   "min_P": 10.666666667,
+   "median_P": 10.666666667,
+   "nfev_q50": 28614,
+   "nfev_q90": 59493,
+   "hanner_hist": {
+    "cube4": 0,
+    "cross4": 34,
+    "octprism4": 2,
+    "cubebipyr4": 4,
+    "None": 0
+   }
+  },
+  "12": {
+   "n": 40,
+   "converged_frac": 1.0,
+   "min_P": 10.666666667,
+   "median_P": 10.666666667,
+   "nfev_q50": 39588,
+   "nfev_q90": 60001,
+   "hanner_hist": {
+    "cube4": 0,
+    "cross4": 32,
+    "octprism4": 0,
+    "cubebipyr4": 8,
+    "None": 0
+   }
+  },
+  "16": {
+   "n": 40,
+   "converged_frac": 0.95,
+   "min_P": 10.666666667,
+   "median_P": 10.666666667,
+   "nfev_q50": 60001,
+   "nfev_q90": 60001,
+   "hanner_hist": {
+    "cube4": 0,
+    "cross4": 30,
+    "octprism4": 0,
+    "cubebipyr4": 10,
+    "None": 0
+   }
+  },
+  "20": {
+   "n": 12,
+   "converged_frac": 0.917,
+   "min_P": 10.666666667,
+   "median_P": 10.666666667,
+   "nfev_q50": 60001,
+   "nfev_q90": 60001,
+   "hanner_hist": {
+    "cube4": 0,
+    "cross4": 8,
+    "octprism4": 1,
+    "cubebipyr4": 3,
+    "None": 0
+   }
+  },
+  "24": {
+   "n": 12,
+   "converged_frac": 1.0,
+   "min_P": 10.666666667,
+   "median_P": 10.666666667,
+   "nfev_q50": 60001,
+   "nfev_q90": 60001,
+   "hanner_hist": {
+    "cube4": 0,
+    "cross4": 8,
+    "octprism4": 1,
+    "cubebipyr4": 3,
+    "None": 0
+   }
+  }
+ }
+}
+wrote summary.json and best_bodies.json
