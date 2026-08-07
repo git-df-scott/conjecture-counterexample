@@ -1,0 +1,6 @@
+bash: line 1: ./search8: No such file or directory
+
+real	0m0.004s
+user	0m0.001s
+sys	0m0.000s
+exit=127
