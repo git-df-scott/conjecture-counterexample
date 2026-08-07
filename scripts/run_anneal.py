@@ -104,9 +104,17 @@ def main():
     rng = random.Random(0xA11CE + 7919 * args.island)
     log = results_path("anneal", f"island{args.island}.jsonl")
 
-    n, adj = seed_graph(args.seed_kind, args.n0, rng)
-    v, _ = sat_minor_direct(n, adj)
-    assert v == "no", "seed must be certifiably K7-minor-free"
+    # some seed constructions (e.g. projquad + full apex) do contain K7
+    # minors; sample until one certifies minor-free
+    for _attempt in range(20):
+        n, adj = seed_graph(args.seed_kind, args.n0, rng)
+        v, _ = sat_minor_direct(n, adj)
+        if v == "no":
+            break
+    else:
+        n, adj = family.random_5tree(args.n0, rng)
+        v, _ = sat_minor_direct(n, adj)
+        assert v == "no", "5-tree seed must be certifiably K7-minor-free"
     cert = (n, adj)  # last exactly-certified state
     score, _ = fitness(n, adj, rng)
     best = score
