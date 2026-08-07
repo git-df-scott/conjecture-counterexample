@@ -112,14 +112,20 @@ def homotopy_probes(smoke=False):
                                 family="explicit", method="cma", m=m, d=D,
                                 max_evals=descent_evals,
                                 V0=(V0 + 0.01 * np.random.default_rng(k).standard_normal(V0.shape)).tolist())
+                    # keep the FULL record: V_final / V_at_min are the
+                    # certification payload if a descent ever triggers
                     r = run_start(task)
-                    descents.append({k2: r[k2] for k2 in
-                                     ("P_final", "hanner", "n_vertices",
-                                      "n_facets", "converged", "nfev", "n_trigger")})
+                    r.pop("V0", None)
+                    descents.append(r)
             out.append({"pair": [a, b], "m": m, "path": path, "s_peak": s_peak,
-                        "P_peak": p_peak, "descents": descents})
-            print(f"  homotopy {a}<->{b}: peak P = {p_peak:.6f} at s = {s_peak:.3f}; "
-                  f"descents -> {[d1['hanner'] for d1 in descents]}", flush=True)
+                        "P_peak": p_peak, "path_triggers": stats.n_trigger,
+                        "descents": descents})
+            if s_peak is not None:
+                print(f"  homotopy {a}<->{b}: peak P = {p_peak:.6f} at "
+                      f"s = {s_peak:.3f}; descents -> "
+                      f"{[d1['hanner'] for d1 in descents]}", flush=True)
+            else:
+                print(f"  homotopy {a}<->{b}: no valid path points!", flush=True)
     return out
 
 
@@ -138,23 +144,35 @@ def main():
     os.makedirs(RESULTS, exist_ok=True)
     jsonl = os.path.join(RESULTS, "starts.jsonl")
     done = set()
+    prior_triggers = []
     if os.path.exists(jsonl):
         with open(jsonl) as fh:
             for line in fh:
                 try:
-                    done.add(json.loads(line)["seed"])
+                    rec = json.loads(line)
+                    done.add(rec["seed"])
+                    if rec.get("n_trigger", 0) > 0:
+                        prior_triggers.append(rec["seed"])
                 except Exception:
                     pass
 
     tasks = [t for t in build_tasks(args.smoke) if t["seed"] not in done]
-    print(f"dim-4 search: {len(tasks)} starts to run ({len(done)} already done), "
-          f"cap {args.cap_seconds:.0f}s, {args.workers} workers", flush=True)
+    if prior_triggers:
+        # trigger protocol: a previous invocation recorded a candidate below
+        # the bound — do NOT search further; regenerate outputs and exit 3
+        print(f"prior TRIGGER record(s) present (seeds {prior_triggers}); "
+              f"skipping all further searching per protocol", flush=True)
+        tasks = []
+    else:
+        print(f"dim-4 search: {len(tasks)} starts to run "
+              f"({len(done)} already done), cap {args.cap_seconds:.0f}s, "
+              f"{args.workers} workers", flush=True)
 
     t0 = time.perf_counter()
     n_done = 0
     run_cpu = 0.0
     capped = False
-    aborted_on_trigger = None
+    aborted_on_trigger = prior_triggers[0] if prior_triggers else None
     with open(jsonl, "a") as out:
         with Pool(processes=args.workers, maxtasksperchild=50) as pool:
             wave = 32
@@ -183,21 +201,42 @@ def main():
     search_wall = time.perf_counter() - t0
 
     hres = []
+    hjson = os.path.join(RESULTS, "homotopy.json")
     if not aborted_on_trigger:
-        print("running homotopy probes (all Hanner pairs)...", flush=True)
-        hres = homotopy_probes(args.smoke)
+        if os.path.exists(hjson):
+            print("reusing persisted homotopy probes", flush=True)
+            with open(hjson) as fh:
+                hres = json.load(fh)
+        else:
+            print("running homotopy probes (all Hanner pairs)...", flush=True)
+            hres = homotopy_probes(args.smoke)
+            with open(hjson, "w") as fh:
+                json.dump(hres, fh, indent=1)
+        homotopy_triggered = any(
+            probe.get("path_triggers", 0) > 0
+            or any(d.get("n_trigger", 0) > 0 for d in probe["descents"])
+            for probe in hres)
+        if homotopy_triggered:
+            aborted_on_trigger = "homotopy"
+            print("!!! TRIGGER during homotopy phase: certify before "
+                  "reporting anything else.", flush=True)
 
     # ---- summary -----------------------------------------------------------
     recs = []
+    n_corrupt = 0
     with open(jsonl) as fh:
         for line in fh:
-            recs.append(json.loads(line))
+            try:
+                recs.append(json.loads(line))
+            except Exception:
+                n_corrupt += 1
     ok = [r for r in recs if r.get("P_final") is not None]
     trig_recs = [r for r in recs if r.get("n_trigger", 0) > 0]
     summary = {
         "n_starts_planned": len(build_tasks(args.smoke)),
         "n_starts_completed": len(recs),
         "n_errors": len(recs) - len(ok),
+        "n_corrupt_lines": n_corrupt,
         "capped": capped,
         "aborted_on_trigger": aborted_on_trigger,
         "search_wall_s": round(search_wall, 1),
@@ -205,7 +244,8 @@ def main():
         "cpu_s_sum_alltime": round(sum(r["wall_s"] for r in recs), 1),
         "total_evals": sum(r["nfev"] for r in recs),
         "min_P_final": min((r["P_final"] for r in ok), default=None),
-        "min_P_seen": min((r["min_P_seen"] for r in ok if r["min_P_seen"]),
+        # over ALL records: an errored start may still have seen a low P
+        "min_P_seen": min((r["min_P_seen"] for r in recs if r.get("min_P_seen")),
                           default=None),
         "n_triggers_total": sum(r["n_trigger"] for r in recs),
         "n_faults_total": sum(r["n_fault"] for r in recs),
@@ -263,7 +303,10 @@ def main():
 
     best = sorted(ok, key=lambda r: r["P_final"])[:8]
     if trig_recs:
-        best = trig_recs + best
+        trig_sorted = sorted(trig_recs,
+                             key=lambda r: r.get("min_P_seen") or float("inf"))
+        tseeds = {t["seed"] for t in trig_sorted}
+        best = trig_sorted + [r for r in best if r["seed"] not in tseeds]
     with open(os.path.join(RESULTS, "best_bodies.json"), "w") as fh:
         json.dump(best, fh, indent=1)
     print("wrote summary.json and best_bodies.json")

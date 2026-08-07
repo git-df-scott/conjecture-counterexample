@@ -27,20 +27,22 @@ def main():
     out = []
     for i, rec in enumerate(bodies):
         V = rec.get("V_at_min") or rec["V_final"]
+        fp = rec.get("P_final")
+        fp_s = f"{fp:.9f}" if fp is not None else f"min_seen={rec.get('min_P_seen')}"
         t0 = time.perf_counter()
         try:
             res = certify_candidate(V, rec["d"])
             res["certify_wall_s"] = round(time.perf_counter() - t0, 2)
-            res["float_P_final"] = rec["P_final"]
+            res["float_P_final"] = fp
             res["hanner"] = rec["hanner"]
             gap = Fraction(res["P_exact"]) - CONJECTURED_MIN_EXACT
-            print(f"[{i}] float P={rec['P_final']:.9f} ({rec['hanner']}): "
+            print(f"[{i}] float P={fp_s} ({rec['hanner']}): "
                   f"exact P = {res['P_exact']} = {res['P_float']:.9f}, "
                   f"beats={res['beats_conjecture']}, exact gap to 32/3 = "
                   f"{float(gap):+.3e}, {res['certify_wall_s']}s")
         except CertificationError as e:
-            res = {"error": str(e), "float_P_final": rec["P_final"]}
-            print(f"[{i}] float P={rec['P_final']:.9f}: CERTIFICATION FAILED: {e}")
+            res = {"error": str(e), "float_P_final": fp}
+            print(f"[{i}] float P={fp_s}: CERTIFICATION FAILED: {e}")
         out.append(res)
     dest = os.path.join(os.path.dirname(path), "spot_certification.json")
     with open(dest, "w") as fh:
