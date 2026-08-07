@@ -1,0 +1,1 @@
+{"mode":"test","n":8,"k":2,"second":-1,"maxm":6,"nodes":27962432,"tested":24887237,"ties":0,"violations":0,"best_excess":-6,"best_example":"[{1,2},{1,3,4},{1,3,5},{1,3,6},{2,3,7},{1,7,8}]"}
