@@ -38,3 +38,11 @@
 {"shard":[13,37,256],"status":"done","rc":0,"stats":{"total":6817257,"disconnected":0,"dominating":16460,"colored6":6779043,"sat_colored6":21525,"chi_ge_7":229},"wall_s":592.4,"rate_per_s":11508}
 {"shard":[13,38,256],"status":"done","rc":0,"stats":{"total":6828238,"disconnected":0,"dominating":14512,"colored6":6791800,"sat_colored6":21720,"chi_ge_7":206},"wall_s":596.3,"rate_per_s":11451}
 {"shard":[13,39,256],"status":"done","rc":0,"stats":{"total":5875340,"disconnected":0,"dominating":5906,"colored6":5849395,"sat_colored6":19915,"chi_ge_7":124},"wall_s":503.6,"rate_per_s":11667}
+{"shard":[13,40,256],"status":"done","rc":0,"stats":{"total":5725329,"disconnected":0,"dominating":6345,"colored6":5703130,"sat_colored6":15682,"chi_ge_7":172},"wall_s":513.5,"rate_per_s":11150}
+{"shard":[13,42,256],"status":"done","rc":0,"stats":{"total":5844449,"disconnected":0,"dominating":10560,"colored6":5814311,"sat_colored6":19366,"chi_ge_7":212},"wall_s":532.6,"rate_per_s":10973}
+{"shard":[13,43,256],"status":"done","rc":0,"stats":{"total":6071636,"disconnected":0,"dominating":21870,"colored6":6027073,"sat_colored6":22509,"chi_ge_7":184},"wall_s":540.9,"rate_per_s":11225}
+{"shard":[13,41,256],"status":"done","rc":0,"stats":{"total":7177979,"disconnected":0,"dominating":6422,"colored6":7149630,"sat_colored6":21789,"chi_ge_7":138},"wall_s":626.2,"rate_per_s":11463}
+{"shard":[13,44,256],"status":"done","rc":0,"stats":{"total":6236319,"disconnected":0,"dominating":13750,"colored6":6199403,"sat_colored6":22949,"chi_ge_7":217},"wall_s":562.3,"rate_per_s":11091}
+{"shard":[13,45,256],"status":"done","rc":0,"stats":{"total":5603042,"disconnected":0,"dominating":8233,"colored6":5574574,"sat_colored6":20071,"chi_ge_7":164},"wall_s":477.5,"rate_per_s":11734}
+{"shard":[13,46,256],"status":"done","rc":0,"stats":{"total":5795052,"disconnected":0,"dominating":7814,"colored6":5772754,"sat_colored6":14382,"chi_ge_7":102},"wall_s":492.9,"rate_per_s":11757}
+{"shard":[13,47,256],"status":"done","rc":0,"stats":{"total":5873585,"disconnected":0,"dominating":8302,"colored6":5842969,"sat_colored6":22191,"chi_ge_7":123},"wall_s":516.1,"rate_per_s":11381}
