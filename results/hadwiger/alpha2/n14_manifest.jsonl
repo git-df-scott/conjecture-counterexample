@@ -1,0 +1,4 @@
+{"shard":[14,2,4,36,49],"status":"done","stats":{"total":17889,"fast_clique":17498,"fast_greedy":79,"fast_mm":312,"exact_yes":0,"sanity_alpha_fail":0},"wall_s":11.3,"rate_per_s":1583}
+{"shard":[14,1,4,36,49],"status":"done","stats":{"total":20834,"fast_clique":20369,"fast_greedy":85,"fast_mm":380,"exact_yes":0,"sanity_alpha_fail":0},"wall_s":11.5,"rate_per_s":1812}
+{"shard":[14,0,4,36,49],"status":"done","stats":{"total":21712,"fast_clique":21133,"fast_greedy":85,"fast_mm":494,"exact_yes":0,"sanity_alpha_fail":0},"wall_s":13.0,"rate_per_s":1670}
+{"shard":[14,3,4,36,49],"status":"done","stats":{"total":24729,"fast_clique":24011,"fast_greedy":121,"fast_mm":597,"exact_yes":0,"sanity_alpha_fail":0},"wall_s":14.1,"rate_per_s":1754}

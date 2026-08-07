@@ -1,0 +1,10 @@
+{"class":"sweep-n10","cmd":"nauty-geng -u -D2 10 10:10","count":5,"exact":true,"wall_s":0.0}
+{"class":"sweep-n11","cmd":"nauty-geng -u -D3 11 15:16","count":848,"exact":true,"wall_s":0.0}
+{"class":"sweep-n12","cmd":"nauty-geng -u -D4 12 21:24","count":1038706,"exact":true,"wall_s":3.5}
+{"class":"sweep-n13","cmd":"nauty-geng -u -D5 13 28:32 [timeout]","count":2283011584,"exact":false,"sample_mod":512,"sample_count":4459007,"wall_s":7.6}
+{"class":"alpha2-n13","cmd":"nauty-geng -u -t 13 28:42","count":224556,"exact":true,"wall_s":4.5}
+{"class":"alpha2-n14","cmd":"nauty-geng -u -t 14 36:49","count":85164,"exact":true,"wall_s":30.7}
+{"class":"alpha2-n15","cmd":"nauty-geng -u -t 15 45:56","count":17949,"exact":true,"wall_s":118.0}
+{"class":"alpha2-n16","cmd":"nauty-geng -u -t 16 55:64 [timeout]","count":512,"exact":false,"sample_mod":512,"sample_count":1,"wall_s":1.9}
+{"class":"alpha2-n17","cmd":"nauty-geng -u -t 17 66:72 [timeout]","count":0,"exact":false,"sample_mod":512,"sample_count":0,"wall_s":6.5}
+{"class":"alpha2-n18","cmd":"nauty-geng -u -t 18 78:81 [timeout]","count":0,"exact":false,"sample_mod":512,"sample_count":0,"wall_s":40.8}
