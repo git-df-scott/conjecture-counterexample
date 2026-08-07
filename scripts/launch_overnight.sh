@@ -51,8 +51,8 @@ run_shards alpha13  4 run_alpha2.py --n 13
 run_shards alpha14  4 run_alpha2.py --n 14
 run_shards alpha15  4 run_alpha2.py --n 15
 run_shards alpha16  4 run_alpha2.py --n 16
-run_shards alpha17  8 run_alpha2.py --n 17
-run_shards alpha18  8 run_alpha2.py --n 18
+run_shards alpha17 32 run_alpha2.py --n 17
+run_shards alpha18 32 run_alpha2.py --n 18
 run_shards sweep13  4 run_sweep.py  --n 13
 
 wait
