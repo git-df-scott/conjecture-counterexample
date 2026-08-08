@@ -232,7 +232,7 @@ def test_local_order():
     print("local vanishing order equals the girth")
     for g in [cycle(4), cycle(6), complete_bipartite(3, 3), hypercube(3), heawood(),
               mobius_kantor(), kt_minus_hamilton_cycle(5), grid(3, 3)]:
-        r = local_report(g, k=6, seed=3)
+        r = local_report(g, seed=3)
         check(r["matches_prediction"] is True,
               f"{g.name}: order {r['measured_vanishing_order']:.3f} ~ girth {r['girth']}")
 

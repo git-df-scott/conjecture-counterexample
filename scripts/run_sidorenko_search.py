@@ -168,7 +168,7 @@ def main():
             "role": role,
             **g.summary(),
             "minfill_width": width,
-            "local": local_report(g, k=min(6, max(3, width)), seed=3),
+            "local": local_report(g, seed=3),
             "lattice": lat,
             "search": srec,
             "certificate": cert,
