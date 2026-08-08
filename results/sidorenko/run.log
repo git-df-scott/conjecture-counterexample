@@ -1,0 +1,115 @@
+=== Sidorenko search: 42 candidates, 0 dropped for width, 0 already done ===
+[  1/42] C_3                    n= 3 e= 3 w=3 pos-control lattice_kernels=     1 exh_tiers=0 min_F=-4.821e+01 exact_floor=-1/8 control ok: violation detected as expected  (0s)
+[  2/42] C_5                    n= 5 e= 5 w=3 pos-control lattice_kernels=    10 exh_tiers=0 min_F=-4.770e+01 exact_floor=-1/32 control ok: violation detected as expected  (0s)
+[  3/42] K_4                    n= 4 e= 6 w=4 pos-control lattice_kernels=     5 exh_tiers=0 min_F=-9.682e+01 exact_floor=-1/64 control ok: violation detected as expected  (0s)
+[  4/42] Petersen               n=10 e=15 w=5 pos-control lattice_kernels=     3 exh_tiers=0 min_F=-1.442e+02 exact_floor=-1/32768 control ok: violation detected as expected  (1s)
+[  5/42] P_3                    n= 3 e= 2 w=2 neg-control lattice_kernels=131571 exh_tiers=4 min_F=-8.882e-16 exact_floor=19/2304 no counterexample  (50s)
+[  6/42] P_5                    n= 5 e= 4 w=2 neg-control lattice_kernels=131571 exh_tiers=4 min_F=-1.776e-15 exact_floor=35776567701141841819 no counterexample  (40s)
+[  7/42] C_4                    n= 4 e= 4 w=3 neg-control lattice_kernels=131571 exh_tiers=4 min_F=-1.776e-15 exact_floor=2614153167/109951162 no counterexample  (39s)
+[  8/42] C_6                    n= 6 e= 6 w=3 neg-control lattice_kernels=131571 exh_tiers=4 min_F=-1.421e-14 exact_floor=728/531441 no counterexample  (75s)
+[  9/42] C_8                    n= 8 e= 8 w=3 neg-control lattice_kernels=131571 exh_tiers=4 min_F=-1.776e-15 exact_floor=511/16777216 no counterexample  (75s)
+[ 10/42] K_{2,2}                n= 4 e= 4 w=3 neg-control lattice_kernels=131571 exh_tiers=4 min_F=-1.776e-15 exact_floor=1234/390625 no counterexample  (36s)
+[ 11/42] K_{2,3}                n= 5 e= 6 w=3 neg-control lattice_kernels=131571 exh_tiers=4 min_F=-1.554e-15 exact_floor=6341859/976562500 no counterexample  (53s)
+[ 12/42] K_{3,3}                n= 6 e= 9 w=4 neg-control lattice_kernels=131571 exh_tiers=4 min_F=-1.421e-14 exact_floor=244140624/3814697265 no counterexample  (84s)
+[ 13/42] K_{3,4}                n= 7 e=12 w=4 neg-control lattice_kernels=131571 exh_tiers=4 min_F=-1.421e-14 exact_floor=24575/16777216 no counterexample  (99s)
+[ 14/42] K_{4,4}                n= 8 e=16 w=5 neg-control lattice_kernels=131571 exh_tiers=4 min_F=-1.421e-14 exact_floor=119209289550715714/2 no counterexample  (109s)
+[ 15/42] K_{4,5}                n= 9 e=20 w=5 neg-control lattice_kernels=121449 exh_tiers=4 min_F=-7.105e-15 exact_floor=8796093022207/115292 no counterexample  (132s)
+[ 16/42] Q_3                    n= 8 e=12 w=4 neg-control lattice_kernels=131571 exh_tiers=4 min_F=-1.421e-14 exact_floor=4294967295/281474976 no counterexample  (80s)
+[ 17/42] Q_4                    n=16 e=32 w=7 neg-control lattice_kernels= 23359 exh_tiers=3 min_F=-2.842e-14 exact_floor=79766443076872509863 no counterexample  (186s)
+[ 18/42] star+edge              n= 5 e= 4 w=2 neg-control lattice_kernels=131571 exh_tiers=4 min_F=-1.776e-15 exact_floor=14084920476910425167 no counterexample  (39s)
+[ 19/42] K_{5,5}-C_{10}         n=10 e=15 w=5 hard        lattice_kernels=131571 exh_tiers=4 min_F=-2.842e-14 exact_floor=1048575/1073741824 no counterexample  (114s)
+[ 20/42] K_{6,6}-C_{12}         n=12 e=24 w=6 hard        lattice_kernels= 94418 exh_tiers=3 min_F=-2.842e-14 exact_floor=68719476735/28147497 no counterexample  (119s)
+[ 21/42] K_{7,7}-C_{14}         n=14 e=35 w=7 hard        lattice_kernels= 22703 exh_tiers=3 min_F=-1.287e-14 exact_floor=20342267567634606181 no counterexample  (172s)
+[ 22/42] K_{5,5}-PM             n=10 e=20 w=5 hard        lattice_kernels=131571 exh_tiers=4 min_F=-1.421e-14 exact_floor=1073741823/109951162 no counterexample  (108s)
+[ 23/42] K_{6,6}-PM             n=12 e=30 w=6 hard        lattice_kernels= 66029 exh_tiers=3 min_F=-1.421e-14 exact_floor=281474976710655/1152 no counterexample  (147s)
+[ 24/42] K_{7,7}-PM             n=14 e=42 w=7 hard        lattice_kernels= 12125 exh_tiers=3 min_F=-2.132e-14 exact_floor=11805916207174113034 no counterexample  (150s)
+=== Sidorenko search: 42 candidates, 0 dropped for width, 24 already done ===
+=== Sidorenko search: 46 candidates, 0 dropped for width, 24 already done ===
+[  1/42] Heawood                n=14 e=21 w=7 hard        lattice_kernels= 99296 exh_tiers=4 lat_min=0(exact) min_F=-5.711e-15 rejects=0 no counterexample  (155s)
+[  1/46] B3x4_8                 n= 7 e= 7 w=3 hard        lattice_kernels=131571 exh_tiers=4 lat_min=0(exact) min_F=-1.453e-15 rejects=0 no counterexample  (80s)
+[  2/46] B3x4_17                n= 7 e= 7 w=3 hard        lattice_kernels=131571 exh_tiers=4 lat_min=0(exact) min_F=-7.105e-15 rejects=0 no counterexample  (50s)
+[  2/42] Moebius-Kantor         n=16 e=24 w=7 hard        lattice_kernels= 60413 exh_tiers=3 lat_min=0(exact) min_F=-1.421e-14 rejects=0 no counterexample  (139s)
+[  3/46] B3x4_20                n= 7 e= 7 w=3 hard        lattice_kernels=131571 exh_tiers=4 lat_min=0(exact) min_F=-1.421e-14 rejects=0 no counterexample  (53s)
+[  4/46] B3x4_25                n= 7 e= 8 w=3 hard        lattice_kernels=131571 exh_tiers=4 lat_min=0(exact) min_F=-1.659e-15 rejects=0 no counterexample  (51s)
+[  5/46] B3x5_10                n= 8 e= 8 w=3 hard        lattice_kernels=131571 exh_tiers=4 lat_min=0(exact) min_F=-1.361e-15 rejects=0 no counterexample  (51s)
+[  3/42] Pappus                 n=18 e=27 w=7 hard        lattice_kernels= 21999 exh_tiers=3 lat_min=0(exact) min_F=-3.997e-15 rejects=0 no counterexample  (147s)
+[  6/46] B3x5_12                n= 8 e= 8 w=3 hard        lattice_kernels=131571 exh_tiers=4 lat_min=0(exact) min_F=-3.553e-15 rejects=0 no counterexample  (56s)
+[  7/46] B3x5_15                n= 8 e= 9 w=3 hard        lattice_kernels=131571 exh_tiers=4 lat_min=0(exact) min_F=-1.776e-15 rejects=0 no counterexample  (53s)
+[  8/46] B3x5_24                n= 8 e= 8 w=3 hard        lattice_kernels=131571 exh_tiers=4 lat_min=0(exact) min_F=-3.553e-15 rejects=0 no counterexample  (52s)
+[  4/42] Desargues              n=20 e=30 w=8 hard        lattice_kernels= 13195 exh_tiers=3 lat_min=0(exact) min_F=-1.066e-14 rejects=0 no counterexample  (160s)
+[  9/46] B3x5_28                n= 8 e= 8 w=3 hard        lattice_kernels=131571 exh_tiers=4 lat_min=0(exact) min_F=-3.553e-15 rejects=0 no counterexample  (51s)
+[ 10/46] B3x5_32                n= 8 e= 8 w=3 hard        lattice_kernels=131571 exh_tiers=4 lat_min=0(exact) min_F=-1.776e-15 rejects=0 no counterexample  (52s)
+[ 11/46] B3x5_35                n= 8 e= 8 w=3 hard        lattice_kernels=131571 exh_tiers=4 lat_min=0(exact) min_F=-1.270e-15 rejects=0 no counterexample  (53s)
+[ 12/46] B3x5_37                n= 8 e= 8 w=3 hard        lattice_kernels=131571 exh_tiers=4 lat_min=0(exact) min_F=-1.084e-15 rejects=0 no counterexample  (55s)
+[  5/42] Nauru                  n=24 e=36 w=8 hard        lattice_kernels=  7217 exh_tiers=3 lat_min=0(exact) min_F=-8.882e-15 rejects=0 no counterexample  (183s)
+[ 13/46] B3x5_39                n= 8 e= 9 w=3 hard        lattice_kernels=131571 exh_tiers=4 lat_min=0(exact) min_F=-7.105e-15 rejects=0 no counterexample  (53s)
+[  6/42] grid_3x3               n= 9 e=12 w=4 neg-control lattice_kernels=131571 exh_tiers=4 lat_min=0(exact) min_F=-2.842e-14 rejects=0 no counterexample  (80s)
+[ 14/46] B3x5_42                n= 8 e= 9 w=3 hard        lattice_kernels=131571 exh_tiers=4 lat_min=0(exact) min_F=-1.598e-15 rejects=0 no counterexample  (55s)
+[ 15/46] B3x5_45                n= 8 e= 9 w=3 hard        lattice_kernels=131571 exh_tiers=4 lat_min=0(exact) min_F=-1.141e-15 rejects=0 no counterexample  (52s)
+[  7/42] grid_3x4               n=12 e=17 w=4 hard        lattice_kernels=131571 exh_tiers=4 lat_min=0(exact) min_F=-1.421e-14 rejects=0 no counterexample  (88s)
+[ 16/46] B3x5_48                n= 8 e=10 w=3 hard        lattice_kernels=131571 exh_tiers=4 lat_min=0(exact) min_F=-2.018e-15 rejects=0 no counterexample  (57s)
+[ 17/46] B3x5_57                n= 8 e= 9 w=3 hard        lattice_kernels=131571 exh_tiers=4 lat_min=0(exact) min_F=-1.887e-15 rejects=0 no counterexample  (52s)
+[  8/42] grid_4x4               n=16 e=24 w=5 hard        lattice_kernels=131571 exh_tiers=4 lat_min=0(exact) min_F=-2.842e-14 rejects=0 no counterexample  (133s)
+[ 18/46] B3x5_64                n= 8 e=10 w=3 hard        lattice_kernels=131571 exh_tiers=4 lat_min=0(exact) min_F=-1.421e-14 rejects=0 no counterexample  (61s)
+[  9/42] theta_3-3-3            n= 8 e= 9 w=3 hard        lattice_kernels=131571 exh_tiers=4 lat_min=0(exact) min_F=-1.421e-14 rejects=0 no counterexample  (78s)
+[ 19/46] B4x4_7                 n= 8 e= 8 w=3 hard        lattice_kernels=131571 exh_tiers=4 lat_min=0(exact) min_F=-1.690e-15 rejects=0 no counterexample  (59s)
+[ 20/46] B4x4_15                n= 8 e= 8 w=3 hard        lattice_kernels=131571 exh_tiers=4 lat_min=0(exact) min_F=-7.105e-15 rejects=0 no counterexample  (51s)
+[ 10/42] theta_2-4-4            n= 9 e=10 w=3 hard        lattice_kernels=131571 exh_tiers=4 lat_min=0(exact) min_F=-2.034e-15 rejects=0 no counterexample  (77s)
+[ 21/46] B4x4_17                n= 8 e= 8 w=3 hard        lattice_kernels=131571 exh_tiers=4 lat_min=0(exact) min_F=-7.105e-15 rejects=0 no counterexample  (54s)
+[ 11/42] theta_3-3-5            n=10 e=11 w=3 hard        lattice_kernels=131571 exh_tiers=4 lat_min=0(exact) min_F=-3.553e-15 rejects=0 no counterexample  (81s)
+[ 22/46] B4x4_20                n= 8 e= 8 w=3 hard        lattice_kernels=131571 exh_tiers=4 lat_min=0(exact) min_F=-7.105e-15 rejects=0 no counterexample  (52s)
+[ 23/46] B4x4_23                n= 8 e= 8 w=3 hard        lattice_kernels=131571 exh_tiers=4 lat_min=0(exact) min_F=-1.776e-15 rejects=0 no counterexample  (54s)
+[ 12/42] theta_4-4-4            n=11 e=12 w=3 hard        lattice_kernels=131571 exh_tiers=4 lat_min=0(exact) min_F=-1.421e-14 rejects=0 no counterexample  (85s)
+[ 24/46] B4x4_26                n= 8 e= 8 w=3 hard        lattice_kernels=131571 exh_tiers=4 lat_min=0(exact) min_F=-1.855e-15 rejects=0 no counterexample  (53s)
+[ 25/46] B4x4_27                n= 8 e= 8 w=3 hard        lattice_kernels=131571 exh_tiers=4 lat_min=0(exact) min_F=-3.553e-15 rejects=0 no counterexample  (51s)
+[ 13/42] double(C_5)            n=10 e=10 w=3 neg-control lattice_kernels=131571 exh_tiers=4 lat_min=0(exact) min_F=-2.842e-14 rejects=0 no counterexample  (81s)
+[ 26/46] B4x4_29                n= 8 e= 9 w=3 hard        lattice_kernels=131571 exh_tiers=4 lat_min=0(exact) min_F=-7.105e-15 rejects=0 no counterexample  (52s)
+[ 14/42] sub1(K_4)              n=10 e=12 w=4 hard        lattice_kernels=131571 exh_tiers=4 lat_min=0(exact) min_F=-3.553e-15 rejects=0 no counterexample  (80s)
+[ 27/46] B4x4_31                n= 8 e= 8 w=3 hard        lattice_kernels=131571 exh_tiers=4 lat_min=0(exact) min_F=-1.421e-14 rejects=0 no counterexample  (57s)
+[ 28/46] B4x4_32                n= 8 e= 8 w=3 hard        lattice_kernels=131571 exh_tiers=4 lat_min=0(exact) min_F=-3.553e-15 rejects=0 no counterexample  (51s)
+[ 15/42] PG(2,2)-incidence      n=14 e=21 w=7 hard        lattice_kernels=101780 exh_tiers=4 lat_min=0(exact) min_F=-4.663e-15 rejects=0 no counterexample  (113s)
+[ 29/46] B4x4_35                n= 8 e= 9 w=3 hard        lattice_kernels=131571 exh_tiers=4 lat_min=0(exact) min_F=-3.553e-15 rejects=0 no counterexample  (52s)
+[ 30/46] B4x4_37                n= 8 e= 9 w=3 hard        lattice_kernels=131571 exh_tiers=4 lat_min=0(exact) min_F=-2.220e-15 rejects=0 no counterexample  (52s)
+[ 16/42] C_6+diag-path          n= 8 e= 9 w=3 hard        lattice_kernels=131571 exh_tiers=4 lat_min=0(exact) min_F=-1.421e-14 rejects=0 no counterexample  (77s)
+[ 31/46] B4x4_40                n= 8 e= 8 w=3 hard        lattice_kernels=131571 exh_tiers=4 lat_min=0(exact) min_F=-1.334e-15 rejects=0 no counterexample  (51s)
+[ 17/42] cube-minus-edge        n= 8 e=11 w=4 hard        lattice_kernels=131571 exh_tiers=4 lat_min=0(exact) min_F=-1.421e-14 rejects=0 no counterexample  (80s)
+[ 32/46] B4x4_41                n= 8 e= 9 w=3 hard        lattice_kernels=131571 exh_tiers=4 lat_min=0(exact) min_F=-1.882e-15 rejects=0 no counterexample  (59s)
+[ 33/46] B4x4_42                n= 8 e= 9 w=3 hard        lattice_kernels=131571 exh_tiers=4 lat_min=0(exact) min_F=-1.087e-15 rejects=0 no counterexample  (52s)
+[ 18/42] K33-plus-subdiv-edge   n= 8 e=12 w=4 neg-control lattice_kernels=131571 exh_tiers=4 lat_min=0(exact) min_F=-1.421e-14 rejects=0 no counterexample  (79s)
+
+=== SUMMARY ===
+outcome: no counterexample found
+graphs processed: 42  {'pos-control': 4, 'neg-control': 17, 'hard': 21}
+exact kernel verdicts: 4,064,848   fully exhaustive tiers: 143
+bipartite graphs whose exhausted families have exact minimum deficit 0: 38/38
+numerical rejects (candidate hits discarded on recheck): 0
+continuous starts: 2,772
+float floor over the 21 hard graphs: min -2.842e-14, max -2.034e-15 (trigger at -1e-09)
+positive controls that failed to trigger: none
+negative controls that wrongly triggered: none
+-> results/sidorenko/summary.json
+[ 34/46] B4x4_44                n= 8 e= 8 w=3 hard        lattice_kernels=131571 exh_tiers=4 lat_min=0(exact) min_F=-1.332e-15 rejects=0 no counterexample  (51s)
+[ 35/46] B4x4_46                n= 8 e= 9 w=3 hard        lattice_kernels=131571 exh_tiers=4 lat_min=0(exact) min_F=-1.421e-14 rejects=0 no counterexample  (58s)
+[ 36/46] B4x4_47                n= 8 e= 9 w=3 hard        lattice_kernels=131571 exh_tiers=4 lat_min=0(exact) min_F=-7.105e-15 rejects=0 no counterexample  (57s)
+[ 37/46] B4x4_51                n= 8 e=10 w=4 hard        lattice_kernels=131571 exh_tiers=4 lat_min=0(exact) min_F=-1.421e-14 rejects=0 no counterexample  (58s)
+[ 38/46] B4x4_54                n= 8 e=10 w=4 hard        lattice_kernels=131571 exh_tiers=4 lat_min=0(exact) min_F=-1.421e-14 rejects=0 no counterexample  (68s)
+[ 39/46] B4x4_56                n= 8 e=10 w=4 hard        lattice_kernels=131571 exh_tiers=4 lat_min=0(exact) min_F=-7.105e-15 rejects=0 no counterexample  (59s)
+[ 40/46] B4x4_62                n= 8 e= 9 w=3 hard        lattice_kernels=131571 exh_tiers=4 lat_min=0(exact) min_F=-1.421e-14 rejects=0 no counterexample  (57s)
+[ 41/46] B4x4_64                n= 8 e=10 w=3 hard        lattice_kernels=131571 exh_tiers=4 lat_min=0(exact) min_F=-2.842e-14 rejects=0 no counterexample  (53s)
+[ 42/46] B4x4_70                n= 8 e= 9 w=3 hard        lattice_kernels=131571 exh_tiers=4 lat_min=0(exact) min_F=-1.421e-14 rejects=0 no counterexample  (57s)
+[ 43/46] B4x4_72                n= 8 e=10 w=4 hard        lattice_kernels=131571 exh_tiers=4 lat_min=0(exact) min_F=-1.421e-14 rejects=0 no counterexample  (66s)
+[ 44/46] B4x4_74                n= 8 e=10 w=4 hard        lattice_kernels=131571 exh_tiers=4 lat_min=0(exact) min_F=-1.612e-15 rejects=0 no counterexample  (60s)
+[ 45/46] B4x4_77                n= 8 e=10 w=3 hard        lattice_kernels=131571 exh_tiers=4 lat_min=0(exact) min_F=-2.842e-14 rejects=0 no counterexample  (63s)
+[ 46/46] B4x4_83                n= 8 e=11 w=4 hard        lattice_kernels=131571 exh_tiers=4 lat_min=0(exact) min_F=-1.421e-14 rejects=0 no counterexample  (54s)
+
+=== SUMMARY ===
+outcome: no counterexample found
+graphs processed: 88  {'hard': 67, 'pos-control': 4, 'neg-control': 17}
+exact kernel verdicts: 10,117,114   fully exhaustive tiers: 327
+bipartite graphs whose exhausted families have exact minimum deficit 0: 84/84
+numerical rejects (candidate hits discarded on recheck): 0
+continuous starts: 5,834
+float floor over the 67 hard graphs: min -2.842e-14, max -1.084e-15 (trigger at -1e-09)
+positive controls that failed to trigger: none
+negative controls that wrongly triggered: none
+-> results/sidorenko/summary.json

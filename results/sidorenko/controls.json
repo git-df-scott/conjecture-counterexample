@@ -1,0 +1,794 @@
+{
+ "positive_controls": [
+  {
+   "graph": "C_3",
+   "bipartite": false,
+   "certificate": {
+    "graph": "C_3",
+    "n": 3,
+    "e": 3,
+    "k": 2,
+    "weights_num": [
+     1,
+     1
+    ],
+    "weights_den": 2,
+    "matrix": [
+     [
+      0,
+      1
+     ],
+     [
+      1,
+      0
+     ]
+    ],
+    "matrix_den": 1,
+    "hom_density": [
+     0,
+     1
+    ],
+    "edge_density": [
+     1,
+     2
+    ],
+    "deficit": [
+     -1,
+     8
+    ],
+    "delta": -64,
+    "delta_sign": -1,
+    "is_counterexample": true,
+    "graphon_max_entry": 1
+   },
+   "lattice_flagged": true,
+   "passed": true
+  },
+  {
+   "graph": "C_5",
+   "bipartite": false,
+   "certificate": {
+    "graph": "C_5",
+    "n": 5,
+    "e": 5,
+    "k": 2,
+    "weights_num": [
+     1,
+     1
+    ],
+    "weights_den": 2,
+    "matrix": [
+     [
+      0,
+      1
+     ],
+     [
+      1,
+      0
+     ]
+    ],
+    "matrix_den": 1,
+    "hom_density": [
+     0,
+     1
+    ],
+    "edge_density": [
+     1,
+     2
+    ],
+    "deficit": [
+     -1,
+     32
+    ],
+    "delta": -1024,
+    "delta_sign": -1,
+    "is_counterexample": true,
+    "graphon_max_entry": 1
+   },
+   "lattice_flagged": true,
+   "passed": true
+  },
+  {
+   "graph": "C_7",
+   "bipartite": false,
+   "certificate": {
+    "graph": "C_7",
+    "n": 7,
+    "e": 7,
+    "k": 2,
+    "weights_num": [
+     1,
+     1
+    ],
+    "weights_den": 2,
+    "matrix": [
+     [
+      0,
+      1
+     ],
+     [
+      1,
+      0
+     ]
+    ],
+    "matrix_den": 1,
+    "hom_density": [
+     0,
+     1
+    ],
+    "edge_density": [
+     1,
+     2
+    ],
+    "deficit": [
+     -1,
+     128
+    ],
+    "delta": -16384,
+    "delta_sign": -1,
+    "is_counterexample": true,
+    "graphon_max_entry": 1
+   },
+   "lattice_flagged": true,
+   "passed": true
+  },
+  {
+   "graph": "C_9",
+   "bipartite": false,
+   "certificate": {
+    "graph": "C_9",
+    "n": 9,
+    "e": 9,
+    "k": 2,
+    "weights_num": [
+     1,
+     1
+    ],
+    "weights_den": 2,
+    "matrix": [
+     [
+      0,
+      1
+     ],
+     [
+      1,
+      0
+     ]
+    ],
+    "matrix_den": 1,
+    "hom_density": [
+     0,
+     1
+    ],
+    "edge_density": [
+     1,
+     2
+    ],
+    "deficit": [
+     -1,
+     512
+    ],
+    "delta": -262144,
+    "delta_sign": -1,
+    "is_counterexample": true,
+    "graphon_max_entry": 1
+   },
+   "lattice_flagged": true,
+   "passed": true
+  },
+  {
+   "graph": "K_4",
+   "bipartite": false,
+   "certificate": {
+    "graph": "K_4",
+    "n": 4,
+    "e": 6,
+    "k": 2,
+    "weights_num": [
+     1,
+     1
+    ],
+    "weights_den": 2,
+    "matrix": [
+     [
+      0,
+      1
+     ],
+     [
+      1,
+      0
+     ]
+    ],
+    "matrix_den": 1,
+    "hom_density": [
+     0,
+     1
+    ],
+    "edge_density": [
+     1,
+     2
+    ],
+    "deficit": [
+     -1,
+     64
+    ],
+    "delta": -1024,
+    "delta_sign": -1,
+    "is_counterexample": true,
+    "graphon_max_entry": 1
+   },
+   "lattice_flagged": true,
+   "passed": true
+  },
+  {
+   "graph": "Petersen",
+   "bipartite": false,
+   "certificate": {
+    "graph": "Petersen",
+    "n": 10,
+    "e": 15,
+    "k": 2,
+    "weights_num": [
+     1,
+     1
+    ],
+    "weights_den": 2,
+    "matrix": [
+     [
+      0,
+      1
+     ],
+     [
+      1,
+      0
+     ]
+    ],
+    "matrix_den": 1,
+    "hom_density": [
+     0,
+     1
+    ],
+    "edge_density": [
+     1,
+     2
+    ],
+    "deficit": [
+     -1,
+     32768
+    ],
+    "delta": -33554432,
+    "delta_sign": -1,
+    "is_counterexample": true,
+    "graphon_max_entry": 1
+   },
+   "lattice_flagged": true,
+   "passed": true
+  }
+ ],
+ "negative_controls": [
+  {
+   "graph": "P_3",
+   "reason": "tree (Sidorenko 1991)",
+   "kernels_decided": 52270,
+   "exhaustive_tiers": 4,
+   "tiers_attempted": 4,
+   "clean": true,
+   "passed": true
+  },
+  {
+   "graph": "P_4",
+   "reason": "tree (Sidorenko 1991)",
+   "kernels_decided": 52270,
+   "exhaustive_tiers": 4,
+   "tiers_attempted": 4,
+   "clean": true,
+   "passed": true
+  },
+  {
+   "graph": "P_6",
+   "reason": "tree (Sidorenko 1991)",
+   "kernels_decided": 52270,
+   "exhaustive_tiers": 4,
+   "tiers_attempted": 4,
+   "clean": true,
+   "passed": true
+  },
+  {
+   "graph": "C_4",
+   "reason": "even cycle (Sidorenko 1991)",
+   "kernels_decided": 52270,
+   "exhaustive_tiers": 4,
+   "tiers_attempted": 4,
+   "clean": true,
+   "passed": true
+  },
+  {
+   "graph": "C_6",
+   "reason": "even cycle (Sidorenko 1991)",
+   "kernels_decided": 52270,
+   "exhaustive_tiers": 4,
+   "tiers_attempted": 4,
+   "clean": true,
+   "passed": true
+  },
+  {
+   "graph": "C_8",
+   "reason": "even cycle (Sidorenko 1991)",
+   "kernels_decided": 52270,
+   "exhaustive_tiers": 4,
+   "tiers_attempted": 4,
+   "clean": true,
+   "passed": true
+  },
+  {
+   "graph": "C_10",
+   "reason": "even cycle (Sidorenko 1991)",
+   "kernels_decided": 52270,
+   "exhaustive_tiers": 4,
+   "tiers_attempted": 4,
+   "clean": true,
+   "passed": true
+  },
+  {
+   "graph": "K_{2,2}",
+   "reason": "even cycle (Sidorenko 1991)",
+   "kernels_decided": 52270,
+   "exhaustive_tiers": 4,
+   "tiers_attempted": 4,
+   "clean": true,
+   "passed": true
+  },
+  {
+   "graph": "K_{2,3}",
+   "reason": "complete bipartite (Sidorenko 1991)",
+   "kernels_decided": 52270,
+   "exhaustive_tiers": 4,
+   "tiers_attempted": 4,
+   "clean": true,
+   "passed": true
+  },
+  {
+   "graph": "K_{3,3}",
+   "reason": "complete bipartite (Sidorenko 1991)",
+   "kernels_decided": 52270,
+   "exhaustive_tiers": 4,
+   "tiers_attempted": 4,
+   "clean": true,
+   "passed": true
+  },
+  {
+   "graph": "K_{3,4}",
+   "reason": "complete bipartite (Sidorenko 1991)",
+   "kernels_decided": 52270,
+   "exhaustive_tiers": 4,
+   "tiers_attempted": 4,
+   "clean": true,
+   "passed": true
+  },
+  {
+   "graph": "K_{4,4}",
+   "reason": "complete bipartite (Sidorenko 1991)",
+   "kernels_decided": 52270,
+   "exhaustive_tiers": 4,
+   "tiers_attempted": 4,
+   "clean": true,
+   "passed": true
+  },
+  {
+   "graph": "Q_3",
+   "reason": "hypercube Q_3 (Hatami 2010)",
+   "kernels_decided": 52270,
+   "exhaustive_tiers": 4,
+   "tiers_attempted": 4,
+   "clean": true,
+   "passed": true
+  },
+  {
+   "graph": "Q_4",
+   "reason": "hypercube Q_4 (Hatami 2010)",
+   "kernels_decided": 52270,
+   "exhaustive_tiers": 4,
+   "tiers_attempted": 4,
+   "clean": true,
+   "passed": true
+  }
+ ],
+ "local": [
+  {
+   "graph": "C_4",
+   "n": 4,
+   "e": 4,
+   "bipartite": true,
+   "girth": 4,
+   "shortest_cycle_count": 1,
+   "predicted_vanishing_order": 4,
+   "measured_vanishing_order": 4.0,
+   "probe_blocks": 5,
+   "per_direction": [
+    3.9999999999999973,
+    4.0000000000000115,
+    4.0
+   ],
+   "matches_prediction": true
+  },
+  {
+   "graph": "C_6",
+   "n": 6,
+   "e": 6,
+   "bipartite": true,
+   "girth": 6,
+   "shortest_cycle_count": 1,
+   "predicted_vanishing_order": 6,
+   "measured_vanishing_order": 5.999999999999998,
+   "probe_blocks": 5,
+   "per_direction": [
+    5.999999999999988,
+    6.000000000000015,
+    5.999999999999998
+   ],
+   "matches_prediction": true
+  },
+  {
+   "graph": "C_8",
+   "n": 8,
+   "e": 8,
+   "bipartite": true,
+   "girth": 8,
+   "shortest_cycle_count": 1,
+   "predicted_vanishing_order": 8,
+   "measured_vanishing_order": 8.000000000000004,
+   "probe_blocks": 5,
+   "per_direction": [
+    7.999999999999996,
+    8.000000000000021,
+    8.000000000000004
+   ],
+   "matches_prediction": true
+  },
+  {
+   "graph": "C_10",
+   "n": 10,
+   "e": 10,
+   "bipartite": true,
+   "girth": 10,
+   "shortest_cycle_count": 1,
+   "predicted_vanishing_order": 10,
+   "measured_vanishing_order": 9.999999999999996,
+   "probe_blocks": 5,
+   "per_direction": [
+    9.999999999999988,
+    10.000000000000016,
+    9.999999999999996
+   ],
+   "matches_prediction": true
+  },
+  {
+   "graph": "C_12",
+   "n": 12,
+   "e": 12,
+   "bipartite": true,
+   "girth": 12,
+   "shortest_cycle_count": 1,
+   "predicted_vanishing_order": 12,
+   "measured_vanishing_order": 12.000000000000002,
+   "probe_blocks": 5,
+   "per_direction": [
+    11.999999999999988,
+    12.000000000000034,
+    12.000000000000002
+   ],
+   "matches_prediction": true
+  },
+  {
+   "graph": "K_{3,3}",
+   "n": 6,
+   "e": 9,
+   "bipartite": true,
+   "girth": 4,
+   "shortest_cycle_count": 9,
+   "predicted_vanishing_order": 4,
+   "measured_vanishing_order": 4.00088029953539,
+   "probe_blocks": 5,
+   "per_direction": [
+    4.00088029953539,
+    4.001558352655461,
+    4.000777940417989
+   ],
+   "matches_prediction": true
+  },
+  {
+   "graph": "Q_3",
+   "n": 8,
+   "e": 12,
+   "bipartite": true,
+   "girth": 4,
+   "shortest_cycle_count": 6,
+   "predicted_vanishing_order": 4,
+   "measured_vanishing_order": 4.002461667927337,
+   "probe_blocks": 5,
+   "per_direction": [
+    4.002461667927337,
+    4.004074692990667,
+    4.001625335592627
+   ],
+   "matches_prediction": true
+  },
+  {
+   "graph": "Q_4",
+   "n": 16,
+   "e": 32,
+   "bipartite": true,
+   "girth": 4,
+   "shortest_cycle_count": 24,
+   "predicted_vanishing_order": 4,
+   "measured_vanishing_order": 4.006556216173828,
+   "probe_blocks": 4,
+   "per_direction": [
+    4.005154302007682,
+    4.010554763779965,
+    4.006556216173828
+   ],
+   "matches_prediction": true
+  },
+  {
+   "graph": "grid_3x3",
+   "n": 9,
+   "e": 12,
+   "bipartite": true,
+   "girth": 4,
+   "shortest_cycle_count": 4,
+   "predicted_vanishing_order": 4,
+   "measured_vanishing_order": 4.000931034279728,
+   "probe_blocks": 5,
+   "per_direction": [
+    4.000931034279728,
+    4.001530241650961,
+    4.000614728932258
+   ],
+   "matches_prediction": true
+  },
+  {
+   "graph": "grid_3x4",
+   "n": 12,
+   "e": 17,
+   "bipartite": true,
+   "girth": 4,
+   "shortest_cycle_count": 6,
+   "predicted_vanishing_order": 4,
+   "measured_vanishing_order": 4.001088661747404,
+   "probe_blocks": 5,
+   "per_direction": [
+    4.001088661747404,
+    4.001794383589683,
+    4.000718560286171
+   ],
+   "matches_prediction": true
+  },
+  {
+   "graph": "K_{5,5}-C_{10}",
+   "n": 10,
+   "e": 15,
+   "bipartite": true,
+   "girth": 4,
+   "shortest_cycle_count": 5,
+   "predicted_vanishing_order": 4,
+   "measured_vanishing_order": 4.002754288244905,
+   "probe_blocks": 5,
+   "per_direction": [
+    4.002754288244905,
+    4.0046397690153785,
+    4.001810056294338
+   ],
+   "matches_prediction": true
+  },
+  {
+   "graph": "K_{5,5}-PM",
+   "n": 10,
+   "e": 20,
+   "bipartite": true,
+   "girth": 4,
+   "shortest_cycle_count": 30,
+   "predicted_vanishing_order": 4,
+   "measured_vanishing_order": 4.004313805688432,
+   "probe_blocks": 5,
+   "per_direction": [
+    4.004313805688432,
+    4.007210517659301,
+    4.0030502805334685
+   ],
+   "matches_prediction": true
+  },
+  {
+   "graph": "Heawood",
+   "n": 14,
+   "e": 21,
+   "bipartite": true,
+   "girth": 6,
+   "shortest_cycle_count": 28,
+   "predicted_vanishing_order": 6,
+   "measured_vanishing_order": 6.000959182007546,
+   "probe_blocks": 4,
+   "per_direction": [
+    6.000761426381152,
+    6.0015355567009765,
+    6.000959182007546
+   ],
+   "matches_prediction": true
+  },
+  {
+   "graph": "Moebius-Kantor",
+   "n": 16,
+   "e": 24,
+   "bipartite": true,
+   "girth": 6,
+   "shortest_cycle_count": 24,
+   "predicted_vanishing_order": 6,
+   "measured_vanishing_order": 6.001603138845963,
+   "probe_blocks": 4,
+   "per_direction": [
+    6.001227809070055,
+    6.002551322370202,
+    6.001603138845963
+   ],
+   "matches_prediction": true
+  },
+  {
+   "graph": "Desargues",
+   "n": 20,
+   "e": 30,
+   "bipartite": true,
+   "girth": 6,
+   "shortest_cycle_count": 20,
+   "predicted_vanishing_order": 6,
+   "measured_vanishing_order": 6.00194278409462,
+   "probe_blocks": 4,
+   "per_direction": [
+    6.001450570505881,
+    6.003090479222117,
+    6.00194278409462
+   ],
+   "matches_prediction": true
+  },
+  {
+   "graph": "theta_4-4-4",
+   "n": 11,
+   "e": 12,
+   "bipartite": true,
+   "girth": 8,
+   "shortest_cycle_count": 3,
+   "predicted_vanishing_order": 8,
+   "measured_vanishing_order": 8.000000142065783,
+   "probe_blocks": 5,
+   "per_direction": [
+    8.000000048500409,
+    8.000000255597612,
+    8.000000142065783
+   ],
+   "matches_prediction": true
+  },
+  {
+   "graph": "theta_3-3-3",
+   "n": 8,
+   "e": 9,
+   "bipartite": true,
+   "girth": 6,
+   "shortest_cycle_count": 3,
+   "predicted_vanishing_order": 6,
+   "measured_vanishing_order": 6.000002122541348,
+   "probe_blocks": 5,
+   "per_direction": [
+    6.000002122541348,
+    5.999994558852849,
+    6.000004395857158
+   ],
+   "matches_prediction": true
+  }
+ ],
+ "float_tier_cross_checks": [
+  {
+   "graph": "C_4",
+   "exact": 155.52734375,
+   "float": 155.52734375,
+   "rel_err": 0.0
+  },
+  {
+   "graph": "C_6",
+   "exact": 522.58056640625,
+   "float": 522.58056640625,
+   "rel_err": 0.0
+  },
+  {
+   "graph": "C_8",
+   "exact": 17730.246627807617,
+   "float": 17730.246627807617,
+   "rel_err": 0.0
+  },
+  {
+   "graph": "C_10",
+   "exact": 10759.359504699707,
+   "float": 10759.359504699707,
+   "rel_err": 0.0
+  },
+  {
+   "graph": "C_12",
+   "exact": 6888479.534643233,
+   "float": 6888479.534643233,
+   "rel_err": 0.0
+  },
+  {
+   "graph": "K_{3,3}",
+   "exact": 21496.177001953125,
+   "float": 21496.177001953125,
+   "rel_err": 0.0
+  },
+  {
+   "graph": "Q_3",
+   "exact": 47557.52960205078,
+   "float": 47557.52960205078,
+   "rel_err": 0.0
+  },
+  {
+   "graph": "Q_4",
+   "exact": 57760990869264.06,
+   "float": 57760990869264.06,
+   "rel_err": 0.0
+  },
+  {
+   "graph": "grid_3x3",
+   "exact": 22961.45922088623,
+   "float": 22961.45922088623,
+   "rel_err": 0.0
+  },
+  {
+   "graph": "grid_3x4",
+   "exact": 127804644.54006863,
+   "float": 127804644.54006863,
+   "rel_err": 0.0
+  },
+  {
+   "graph": "K_{5,5}-C_{10}",
+   "exact": 251279.82597064972,
+   "float": 251279.82597064972,
+   "rel_err": 0.0
+  },
+  {
+   "graph": "K_{5,5}-PM",
+   "exact": 17955.804389953613,
+   "float": 17955.804389953613,
+   "rel_err": 0.0
+  },
+  {
+   "graph": "Heawood",
+   "exact": 5190893018.141896,
+   "float": 5190893018.141897,
+   "rel_err": 1.8372066483998201e-16
+  },
+  {
+   "graph": "Moebius-Kantor",
+   "exact": 17412803566.96164,
+   "float": 17412803566.96164,
+   "rel_err": 0.0
+  },
+  {
+   "graph": "Desargues",
+   "exact": 2.0420565424285624e+16,
+   "float": 2.0420565424285624e+16,
+   "rel_err": 0.0
+  },
+  {
+   "graph": "theta_4-4-4",
+   "exact": 70954.55754947662,
+   "float": 70954.55754947662,
+   "rel_err": 0.0
+  },
+  {
+   "graph": "theta_3-3-3",
+   "exact": 16254.203063964844,
+   "float": 16254.203063964844,
+   "rel_err": 0.0
+  }
+ ],
+ "all_controls_passed": true,
+ "worst_float_exact_rel_err": 1.8372066483998201e-16,
+ "seconds": 199.477956533432
+}
