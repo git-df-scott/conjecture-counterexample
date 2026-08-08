@@ -1,4 +1,131 @@
-# Mahler conjecture (dim 4): counterexample search with exact certification
+# Counterexample searches for open conjectures, with exact certification
+
+Each subproject picks an open conjecture, searches hard for a
+counterexample, and certifies whatever it finds in exact arithmetic — so
+that a hit would be a proof rather than a numerical suggestion, and a
+miss is reported as a miss, with coverage statistics attached. Neither
+search has found a counterexample. That is the expected outcome and it is
+reported as such; the deliverable is the certified negative result plus
+the machinery.
+
+| subproject | conjecture | status | certification |
+| --- | --- | --- | --- |
+| `sidorenko/` | Sidorenko's conjecture (open) | no counterexample found | exact integer, complete in both directions |
+| `mahler/` | Mahler conjecture in dim 4 (open) | no counterexample found; floor at 32/3 | exact rational, sound in the counterexample direction |
+
+## Sidorenko's conjecture
+
+For every bipartite graph `H` and every graphon `W`,
+
+```
+t(H, W)  >=  t(K_2, W)^e(H)
+```
+
+i.e. no bipartite `H` can appear less often than in a random graph of the
+same edge density. Open in general. Proven for trees, even cycles,
+complete bipartite graphs, bipartite graphs with a vertex adjacent to the
+whole other part (Conlon–Fox–Sudakov), and hypercubes (Hatami); the
+literature cites `K_{5,5}` minus a Hamilton cycle as the smallest
+bipartite graph for which it was open. This subproject searches for a
+counterexample over step kernels and certifies every verdict exactly.
+
+### Two reductions that shape the search
+
+* **The search space is complete.** For fixed `H`, `t(H, ·)` and
+  `t(K_2, ·)` are cut-metric continuous and step kernels are dense, so the
+  infimum of the deficit over all graphons equals its infimum over step
+  kernels. Finitely many blocks is a resolution limit, not a structural
+  one — a counterexample, if one exists, is witnessed by some step kernel.
+
+* **Scale invariance.** The deficit is homogeneous of degree `e(H)` under
+  `W -> cW`, so its *sign* is scale-invariant. Two payoffs: the graphon
+  constraint `W <= 1` can be dropped during the search and restored at
+  the end for free, and the objective can be evaluated after rescaling to
+  `t(K_2, W) = 1`, which removes the catastrophic cancellation that
+  `t(H, W) - p^e(H)` suffers near the constant kernel (the two terms
+  agree to 16 digits there). Sidorenko for `H` is then exactly
+  `min log t(H, W) >= 0`.
+
+### Why the search must be global
+
+Perturb the constant kernel, `W = p(1 + f)` with `f` mean zero. Every
+edge-subset term whose support has a degree-1 vertex integrates to zero,
+so the lowest surviving order is the girth `2g`, and it contributes
+`c_2g(H) · tr(f^2g) = c_2g(H) · Σ λ_i^2g >= 0`. **The constant kernel is a
+strict local minimum of the deficit for every `H` of even girth.** No
+locally-started method can ever succeed; a counterexample must live far
+from quasirandomness. `sidorenko/local.py` measures this per graph — the
+fitted vanishing order matches the girth to within 0.01 on all 13 graphs
+checked — and it is why the search seeds from 0/1 blowups and wide
+log-normal kernels, and why the lattice tier sweeps extreme points.
+
+### Architecture
+
+* **Float search tier** (`sidorenko/contract.py`, `density.py`,
+  `optimize.py`). `t(H, W)` on a `k`-block kernel is a tensor network with
+  one variable per vertex of `H`, contracted by greedy min-fill variable
+  elimination in `O(n · k^(w+1))` — the `k^n` sum is hopeless at `n = 20`.
+  Analytic gradients come from per-edge and per-vertex pinned
+  contractions and are pinned by both Euler identities implied by
+  homogeneity plus finite differences. Multi-start L-BFGS-B and CMA-ES
+  over `k = 2..8` blocks with free block weights.
+
+* **Exact lattice tier** (`sidorenko/lattice.py`). Enumerates *every*
+  symmetric integer kernel `M ∈ {0..m}^(k×k)` up to simultaneous
+  permutation, with uniform weights, and decides each exactly. With
+  uniform weights the deficit sign is the sign of the integer
+  `Δ = T·k^2e − S^e·k^n`; `T` is computed by int64 elimination, which is
+  *exact* (not merely accurate) under an a-priori bound `k^n · m^e < 2^62`
+  that the code checks in Python integers before choosing the dtype,
+  falling back to unbounded ints otherwise. Where a tier is exhausted
+  this is an unconditional theorem about that family. Tiers that do not
+  fit the time budget are subsampled and **relabelled non-exhaustive**,
+  with the covered fraction recorded.
+
+* **Exact certification tier** (`sidorenko/certify.py`). Pure stdlib, no
+  numpy, no float, and no code shared with the search tier — the
+  contraction is re-implemented over Python integers with a *different*
+  elimination heuristic, so the two paths agree only if both are right.
+  For rational data `a_i = c_i/C`, `W = M/D`, the deficit sign is the sign
+  of `Δ = T·C^2e − S^e·C^n`. Float output is used only as an uncertified
+  combinatorial hint: the best kernel is rounded to ~130 nearby rationals
+  (including exact zeros) and each is decided from scratch. Unlike the
+  geometric certification in `mahler/`, this is a **complete decision
+  procedure with no error direction** — `Δ < 0` would be an unconditional
+  disproof, and `Δ >= 0` is an unconditional verification of that kernel.
+
+### Checkpoints
+
+* `scripts/run_sidorenko_controls.py` — run first. Establishes that the
+  trigger fires when it must (non-bipartite `H`, where Sidorenko provably
+  fails, must yield an exact certificate), that it does not fire when it
+  must not (proven-positive classes, exhaustively swept), and that the
+  measured local vanishing order equals the girth.
+* `scripts/run_sidorenko_search.py` — the search. Resumable (one JSONL
+  record per graph), aborts on a certified bipartite violation.
+
+### Results
+
+`results/sidorenko/`: `controls.json`, `search.jsonl` (one record per
+graph: local analysis, lattice verdicts, search trace, exact
+certificate), `summary.json`, `run.log`.
+
+### Tests
+
+```
+python3 tests/test_sidorenko.py
+```
+
+Cross-checks the min-fill contraction against the direct `k^n` sum, the
+analytic gradient against finite differences and both Euler identities,
+the pure-stdlib exact certifier against the float tier, the predicted
+local order against a log-log fit, and the isomorphism dedup against an
+independent pairwise-VF2 count. Plus sign controls in both directions.
+
+Requirements: Python 3.11+, numpy, scipy, cma, networkx (search tier
+only; the exact certifier is dependency-free by design).
+
+## Mahler conjecture (dim 4)
 
 The Mahler conjecture states that for a centrally symmetric convex body
 K in R^n, the volume product P(K) = vol(K) * vol(K°) is minimized by the
@@ -11,7 +138,7 @@ subclasses (unconditional bodies, zonoids), that the outcome is a
 certified negative result: coverage statistics plus best-found P vs. the
 bound 4^4/4! = 32/3.
 
-## Architecture
+### Architecture
 
 Two tiers:
 
@@ -36,7 +163,7 @@ Two tiers:
   independent hint-free canonical triangulation path that must agree to
   exact equality. See the module docstring for the full argument.
 
-## Checkpoints
+### Checkpoints
 
 * `scripts/run_dim3.py` — dim-3 checkpoint (conjecture proven there):
   confirms the pipeline finds the cube/octahedron floor at exactly 32/3,
@@ -44,7 +171,7 @@ Two tiers:
   per start; resumable.
 * dim-4 search: only run after the dim-3 checkpoint is reviewed.
 
-## Tests
+### Tests
 
 ```
 python3 tests/test_float.py

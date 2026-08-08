@@ -1,0 +1,21 @@
+{
+ "conjecture": "Sidorenko: t(H, W) >= t(K_2, W)^{e(H)} for every bipartite H",
+ "outcome": "no counterexample found",
+ "counterexamples": [],
+ "graphs_processed": 1,
+ "by_role": {
+  "neg-control": 1
+ },
+ "hard_graphs": 0,
+ "lattice_kernels_decided_total": 91608,
+ "fully_exhaustive_tiers_total": 4,
+ "continuous_starts_total": 90,
+ "float_floor_min_over_hard_graphs": null,
+ "float_floor_max_over_hard_graphs": null,
+ "float_trigger_threshold": -1e-09,
+ "exact_floor_is_zero_for_all_hard_graphs": true,
+ "positive_controls_that_failed_to_trigger": [],
+ "negative_controls_that_wrongly_triggered": [],
+ "graphs_dropped_for_width": [],
+ "seconds": 41.10794186592102
+}
