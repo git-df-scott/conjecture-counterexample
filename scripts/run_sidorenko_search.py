@@ -99,6 +99,11 @@ def main():
     ap.add_argument("--no-enumeration", action="store_true")
     ap.add_argument("--restart", action="store_true")
     ap.add_argument("--only", type=str, default=None, help="substring filter on graph names")
+    ap.add_argument("--roles", type=str, nargs="+", default=None,
+                    choices=["hard", "neg-control", "pos-control"],
+                    help="restrict to these roles; the enumeration is dominated by "
+                         "proven-positive graphs, so --roles hard concentrates the "
+                         "budget on genuinely open cases")
     args = ap.parse_args()
 
     os.makedirs(OUT, exist_ok=True)
@@ -124,6 +129,8 @@ def main():
     kept, dropped = candidates(not args.no_enumeration)
     if args.only:
         kept = [x for x in kept if args.only in x[0].name]
+    if args.roles:
+        kept = [x for x in kept if role_of(x[0]) in set(args.roles)]
     log(f"=== Sidorenko search: {len(kept)} candidates, {len(dropped)} dropped for width, "
         f"{len(done)} already done ===")
     if dropped:
@@ -193,15 +200,26 @@ def main():
 
         floor = srec["best_F"]
         floor_str = "n/a" if floor is None else f"{floor:+.3e}"
-        if cert is None:
-            exact_str = "n/a"
+        # The certified quantity worth printing is the exact minimum of the
+        # deficit over the exhaustively swept integer families: "0" means the
+        # minimum is exactly zero, attained at the constant kernels, over every
+        # kernel in those families.  The rounded-candidate deficit is a
+        # different and much weaker statement (it only says the search's own
+        # best point is not a counterexample), so it is recorded in the JSONL
+        # rather than advertised here.
+        exh_signs = [t.get("min_delta_sign") for t in lat["tiers"] if t.get("exhaustive")]
+        if not exh_signs:
+            lat_str = "n/a"
+        elif all(s == 0 for s in exh_signs):
+            lat_str = "0(exact)"
+        elif any(s is not None and s < 0 for s in exh_signs):
+            lat_str = "NEGATIVE"
         else:
-            num, den = cert["deficit"]
-            exact_str = "0" if num == 0 else f"{num}/{den}"[:20]
+            lat_str = "+"
         log(f"[{processed:>3d}/{len(kept)}] {g.name:22s} n={g.n:2d} e={g.m:2d} w={width} "
             f"{role:11s} lattice_kernels={lat['kernels_decided']:>6d} "
-            f"exh_tiers={lat['fully_exhaustive_tiers']} "
-            f"min_F={floor_str} exact_floor={exact_str} "
+            f"exh_tiers={lat['fully_exhaustive_tiers']} lat_min={lat_str} "
+            f"min_F={floor_str} rejects={srec['numerical_rejects']} "
             f"{rec['VERDICT']}  ({rec['seconds']:.0f}s)")
 
         if counterexample:
@@ -234,10 +252,26 @@ def summarize(jsonl, log, seconds, dropped):
     neg_fail = [r["graph"] for r in by_role.get("neg-control", []) if r["violation_found"]]
     real = [r["graph"] for r in recs if r.get("VERDICT", "").startswith("COUNTEREXAMPLE")]
 
+    # The crisp certified claim: over every integer kernel family that was
+    # exhausted, the exact minimum of the deficit is 0, attained at the constant
+    # kernels.  Anything other than 0 there would be news in one direction or a
+    # bug in the other.
+    def exh_min_zero(r):
+        signs = [t.get("min_delta_sign") for t in r["lattice"]["tiers"] if t.get("exhaustive")]
+        return bool(signs) and all(s == 0 for s in signs)
+
+    verdict_recs = [r for r in recs if r["role"] != "pos-control"]
+    exact_zero = [r["graph"] for r in verdict_recs if exh_min_zero(r)]
+    no_exh = [r["graph"] for r in verdict_recs if not exh_min_zero(r)]
+
     summary = {
         "conjecture": "Sidorenko: t(H, W) >= t(K_2, W)^{e(H)} for every bipartite H",
         "outcome": ("COUNTEREXAMPLE FOUND" if real else "no counterexample found"),
         "counterexamples": real,
+        "bipartite_graphs_with_exact_min_deficit_zero": len(exact_zero),
+        "bipartite_graphs_without_a_fully_exhausted_tier": no_exh,
+        "numerical_rejects_total": sum(
+            r["search"].get("numerical_rejects", 0) for r in recs),
         "graphs_processed": len(recs),
         "by_role": {k: len(v) for k, v in by_role.items()},
         "hard_graphs": len(hard),
@@ -263,6 +297,11 @@ def summarize(jsonl, log, seconds, dropped):
     log(f"graphs processed: {summary['graphs_processed']}  {summary['by_role']}")
     log(f"exact kernel verdicts: {summary['lattice_kernels_decided_total']:,}"
         f"   fully exhaustive tiers: {summary['fully_exhaustive_tiers_total']}")
+    log(f"bipartite graphs whose exhausted families have exact minimum deficit 0: "
+        f"{len(exact_zero)}/{len(verdict_recs)}"
+        + (f"   (no exhausted tier: {no_exh})" if no_exh else ""))
+    log(f"numerical rejects (candidate hits discarded on recheck): "
+        f"{summary['numerical_rejects_total']}")
     log(f"continuous starts: {summary['continuous_starts_total']:,}")
     if floors:
         log(f"float floor over the {len(hard)} hard graphs: "

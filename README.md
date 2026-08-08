@@ -54,10 +54,44 @@ so the lowest surviving order is the girth `2g`, and it contributes
 `c_2g(H) · tr(f^2g) = c_2g(H) · Σ λ_i^2g >= 0`. **The constant kernel is a
 strict local minimum of the deficit for every `H` of even girth.** No
 locally-started method can ever succeed; a counterexample must live far
-from quasirandomness. `sidorenko/local.py` measures this per graph — the
-fitted vanishing order matches the girth to within 0.01 on all 13 graphs
-checked — and it is why the search seeds from 0/1 blowups and wide
-log-normal kernels, and why the lattice tier sweeps extreme points.
+from quasirandomness. This is why the search seeds from 0/1 blowups and
+wide log-normal kernels, and why the lattice tier sweeps extreme points.
+
+`sidorenko/local.py` measures the prediction per graph, and has to do it
+in **exact rational arithmetic**: the deficit at `eps = 1/32` with girth 8
+is around `1e-12` while float cancellation error is `1e-16`, leaving four
+usable digits and a fitted exponent of 6.5 instead of 8. Using integer
+mean-zero directions (`f_ij = k² A_ij − k(r_i + r_j) + s` has zero row
+sums by construction, so the edge density is pinned at exactly 1) with
+`eps = 1/(2^j max|f|)` makes `W` rational and the deficit an exact
+`Fraction`. Measured orders then match the girth on every graph checked:
+`C_8 → 8.0000`, `C_10 → 10.0000`, `C_12 → 12.0000`,
+`theta_4-4-4 → 8.0000`, Heawood `→ 6.001`, Desargues `→ 6.002`.
+
+### Numerical robustness is load-bearing here
+
+A search is only evidence of absence if it does not manufacture hits. Two
+proven-positive graphs initially produced "violations" — `C_8` at
+`F = −6.4e−06` and `Q_3` at `F = −0.405` — and both were artifacts of
+L-BFGS drifting to degenerate boundary points (block weights around
+`1e-86`, matrix entries spanning `1e83`):
+
+* the unnormalized product over `e(H)` edges reaches `1e664` and
+  **overflows**. Fixed by max-normalizing the matrix before contracting,
+  which is free because `F` and `dF/dtheta` are both scale-invariant.
+* max-normalization does not bound the *results*: at `Q_3`'s point `t` and
+  `p^12` were both `6.4e-321`, **subnormal**, carrying four significant
+  digits, so `log t − e log p` had `1e-3` of error. Anything leaving the
+  normal float range is now rejected rather than believed.
+* `t == 0` was read as a hard violation, but underflow produces the same
+  `0`. A genuine structural zero is now distinguished from underflow by an
+  **exact integer homomorphism count** into the kernel's support — so odd
+  cycles still certify while underflow is discarded.
+
+Neither artifact ever produced a false certificate; the exact tier refused
+both. Both are pinned by regression tests. Candidate hits are additionally
+re-evaluated through an independent path before being believed, and
+counted as `numerical_rejects` when they do not survive.
 
 ### Architecture
 
