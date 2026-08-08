@@ -290,20 +290,40 @@ def rational_candidates(weights, mat, denominators=(1, 2, 3, 4, 6, 8, 12, 16, 24
     return out
 
 
-def certify_best(g, weights, mat, max_candidates=400):
+def certify_best(g, weights, mat, max_candidates=400, time_budget=45.0):
     """Round a float kernel to rationals and return the exact verdicts.
 
     Returns (best_certificate, n_certified) where `best` minimises the exact
-    deficit; `is_counterexample` on it is the certified answer for the whole
-    rounded family.
+    deficit; `is_counterexample` on it is the certified answer for every
+    candidate actually decided.
+
+    Cost control: one exact contraction is O(k^(w+1)) *pure-Python* operations,
+    which for a width-8 graph at k = 8 is ~1e8 ops, so certifying all ~130
+    candidates would take hours on the widest graphs.  Candidates are therefore
+    time-boxed, and ordered by **descending denominator** -- finest rounding
+    first.  That ordering is the useful one here: coarse, near-0/1 kernels are
+    already decided exhaustively by `sidorenko.lattice`, so the marginal value
+    of this stage lies entirely in the fine roundings closest to the float
+    optimum, which the lattice tier cannot reach.
     """
+    import time
+
     cands = rational_candidates(weights, mat)[:max_candidates]
+    cands.sort(key=lambda t: -t[3])  # finest rounding (largest D) first
     best = None
+    t0 = time.time()
+    done = 0
     for c, _C, M, D in cands:
+        if done and time.time() - t0 > time_budget:
+            break
         cert = certify(g, c, M, D)
+        done += 1
         key = Fraction(*cert["deficit"])
         if best is None or key < Fraction(*best["deficit"]):
             best = cert
         if cert["is_counterexample"]:
-            return cert, len(cands)
-    return best, len(cands)
+            return cert, done
+    if best is not None:
+        best["candidates_available"] = len(cands)
+        best["candidates_decided"] = done
+    return best, done

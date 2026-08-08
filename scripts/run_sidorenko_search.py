@@ -158,7 +158,8 @@ def main():
         cert = None
         if a is not None:
             cert, n_cands = certify_best(
-                g, [float(x) for x in a], [[float(x) for x in row] for row in B])
+                g, [float(x) for x in a], [[float(x) for x in row] for row in B],
+                time_budget=max(10.0, args.per_graph * 0.25))
             if cert:
                 cert["candidates_tried"] = n_cands
 

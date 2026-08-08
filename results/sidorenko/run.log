@@ -23,3 +23,4 @@
 [ 22/42] K_{5,5}-PM             n=10 e=20 w=5 hard        lattice_kernels=131571 exh_tiers=4 min_F=-1.421e-14 exact_floor=1073741823/109951162 no counterexample  (108s)
 [ 23/42] K_{6,6}-PM             n=12 e=30 w=6 hard        lattice_kernels= 66029 exh_tiers=3 min_F=-1.421e-14 exact_floor=281474976710655/1152 no counterexample  (147s)
 [ 24/42] K_{7,7}-PM             n=14 e=42 w=7 hard        lattice_kernels= 12125 exh_tiers=3 min_F=-2.132e-14 exact_floor=11805916207174113034 no counterexample  (150s)
+=== Sidorenko search: 42 candidates, 0 dropped for width, 24 already done ===
