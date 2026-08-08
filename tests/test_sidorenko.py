@@ -47,6 +47,7 @@ from sidorenko.graph import (
     projective_plane_incidence,
 )
 from sidorenko.lattice import sweep
+from sidorenko.optimize import run_graph
 from sidorenko.local import local_report
 
 FAILURES = []
@@ -237,6 +238,49 @@ def test_local_order():
               f"{g.name}: order {r['measured_vanishing_order']:.3f} ~ girth {r['girth']}")
 
 
+def test_numerical_guards():
+    """Regression: degenerate kernels must be rejected, not believed.
+
+    L-BFGS walks to points such as block weights (2.8e-86, 1) with matrix
+    entries spanning 1e83.  There the unnormalised edge product overflows, and
+    even after max-normalisation t and p^e(H) can both be subnormal (~1e-320)
+    where they carry ~4 significant digits -- enough error to manufacture a
+    violation of a *proven* case out of nothing.  Both concrete points below
+    did exactly that (C_8 reported -6.4e-06, Q_3 reported -0.405).
+    """
+    print("numerical guards on degenerate kernels")
+    bad = [
+        (cycle(8), np.array([2.82e-86, 1.0]),
+         np.array([[1.0, 2.61e83], [2.61e83, 1.0]])),
+        (hypercube(3), np.array([3.15e-67, 1.0, 1.218e-66]),
+         np.array([[1.0, 1.1267e-35, 5.117e-47],
+                   [1.1267e-35, 2.0752e-27, 2.3488e-47],
+                   [5.117e-47, 2.3488e-47, 1.7621e-40]])),
+    ]
+    for g, a, B in bad:
+        F, status = D.evaluate(g, a, B)
+        check(F >= 1e99 and status != "ok",
+              f"{g.name}: degenerate kernel rejected ({status})")
+
+    # A genuine structural zero is still a violation, decided by an exact
+    # integer homomorphism count rather than by float underflow.
+    a2 = np.array([0.5, 0.5])
+    Bz = np.array([[0.0, 1.0], [1.0, 0.0]])
+    check(D.evaluate(cycle(3), a2, Bz) == (-np.inf, "ok"), "C_3 structural zero -> -inf")
+    check(D.evaluate(cycle(5), a2, Bz) == (-np.inf, "ok"), "C_5 structural zero -> -inf")
+    F4, _ = D.evaluate(cycle(4), a2, Bz)
+    check(abs(F4 - np.log(2.0)) < 1e-12, "C_4 on the same kernel -> +log 2, not a zero")
+    check(D.support_hom_count(cycle(3), a2, Bz) == 0, "support hom count of C_3 is 0")
+    check(D.support_hom_count(cycle(4), a2, Bz) == 2, "support hom count of C_4 is 2")
+    check(D.support_hom_count(cycle(4), a2, np.ones((2, 2))) == 16, "C_4 -> full support: 2^4")
+
+    # end-to-end: no proven-positive graph may produce a surviving float hit
+    for g in [cycle(6), cycle(8), complete_bipartite(3, 3), hypercube(3)]:
+        rec, _ = run_graph(g, block_counts=(2, 3, 4), n_random=6, seed=1, time_budget=25)
+        check(rec["float_hit"] is None and rec["best_F"] > -1e-9,
+              f"{g.name}: no float hit, floor {rec['best_F']:+.2e}")
+
+
 def test_rounding_candidates():
     print("float -> rational rounding"),
     k = 3
@@ -315,6 +359,7 @@ def main():
         test_positive_controls,
         test_negative_controls,
         test_local_order,
+        test_numerical_guards,
         test_rounding_candidates,
         test_enumeration,
         test_corpus_sanity,

@@ -53,9 +53,12 @@ __all__ = [
     "hom_density",
     "edge_density",
     "normalize",
+    "evaluate",
     "objective",
     "objective_and_grad",
     "hom_density_bruteforce",
+    "support_hom_count",
+    "REJECT",
 ]
 
 
@@ -96,15 +99,81 @@ def normalize(weights, mat):
     return np.asarray(mat, dtype=float) / p
 
 
+# Below this, a float64 is subnormal and carries far fewer than 15 significant
+# digits; 1e-280 keeps every quantity in the normal range with room to spare.
+_NORMAL_FLOOR = 1e-280
+REJECT = 1e100
+
+
+def support_hom_count(g, weights, mat):
+    """Exact number of homomorphisms H -> support(mat), over positive-weight
+    blocks only (loops allowed).  Integer arithmetic, so exact.
+
+    This is what decides whether t(H, W) = 0 *genuinely* -- i.e. every map hits
+    a structural zero of the kernel -- as opposed to having merely underflowed.
+    Without the distinction, a degenerate kernel whose true t is 1e-400 reads as
+    a hard violation, which is how a proven-positive graph can appear to fail.
+    """
+    a = np.asarray(weights, float)
+    B = np.asarray(mat, float)
+    live = a > 0
+    if not live.any():
+        return 0
+    S = ((B > 0) & live[:, None] & live[None, :]).astype(np.int64)
+    ones = np.ones(S.shape[0], dtype=np.int64)
+    return int(contract(plan_for(g.n, g.edges), ones, S))
+
+
+def evaluate(g, weights, mat):
+    """Guarded evaluation of F = log t(H, W) - e(H) log t(K_2, W).
+
+    Returns (F, status).  `status` is "ok", or a reason string when the point
+    cannot be evaluated to float precision, in which case F = REJECT (for the
+    optimiser to avoid) -- except for a genuine structural zero, which is a
+    real violation and returns -inf.
+
+    F is scale invariant, so the matrix is first divided by its largest entry:
+    every entry is then at most 1 and no product over edges can overflow.  What
+    max-normalisation does *not* fix is the magnitude of the results themselves:
+    with a very wide dynamic range, t and p^e(H) can both land in the subnormal
+    range (~1e-320), where they retain about four significant digits and their
+    log-difference carries an error of ~1e-3 -- large enough to manufacture a
+    violation out of nothing.  So anything that leaves the normal float range is
+    rejected rather than believed.
+    """
+    a = np.asarray(weights, float)
+    B = np.asarray(mat, dtype=float)
+    if not np.all(np.isfinite(B)) or not np.all(np.isfinite(a)):
+        return REJECT, "nonfinite input"
+    mx = float(np.max(B))
+    if not (mx > 0 and np.isfinite(mx)):
+        return REJECT, "degenerate matrix"
+    B = B / mx
+    p = edge_density(a, B)
+    if not (p > 0 and np.isfinite(p)):
+        return REJECT, "nonpositive edge density"
+    if g.m * np.log(p) < -600.0:
+        return REJECT, "p^e(H) below the normal float range"
+    t = hom_density(g, a, B)
+    if not np.isfinite(t):
+        return REJECT, "nonfinite t"
+    if t <= 0.0:
+        # Either a structural zero (a real violation) or underflow (not).
+        if support_hom_count(g, a, B) == 0:
+            return -np.inf, "ok"
+        return REJECT, "t underflowed"
+    if t < _NORMAL_FLOOR:
+        return REJECT, "t below the normal float range"
+    return float(np.log(t) - g.m * np.log(p)), "ok"
+
+
 def objective(g, weights, mat):
-    """F = log t(H, W) - e(H) log t(K_2, W); Sidorenko for H iff min F >= 0."""
-    B = normalize(weights, mat)
-    if B is None:
-        return np.inf
-    t = hom_density(g, weights, B)
-    if not (t > 0):
-        return -np.inf  # t = 0 with positive edge density is a hard violation
-    return float(np.log(t))
+    """F = log t(H, W) - e(H) log t(K_2, W); Sidorenko for H iff min F >= 0.
+
+    The careful path, used to re-verify any candidate hit from the optimiser.
+    Returns REJECT for points that cannot be evaluated reliably.
+    """
+    return evaluate(g, weights, mat)[0]
 
 
 def _dt_dmat(g, weights, mat):
@@ -207,18 +276,28 @@ def objective_and_grad(g, x, k, optimize_weights=False, weights=None):
     B = exp(theta) (smooth, and enforces B > 0; exact zeros are reached only in
     the rational rounding stage of `sidorenko.certify`).  Block weights are
     either fixed (`weights`) or a softmax of the psi block of `x`.
+
+    The matrix is divided by its largest entry before anything is contracted.
+    F and dF/dtheta are both invariant under B -> cB (F is homogeneous of
+    degree 0 and dF/dS is homogeneous of degree -1, so dF/dtheta = dF/dS * S is
+    degree 0), so this changes nothing mathematically -- but it is essential
+    numerically.  L-BFGS will happily walk to a degenerate boundary point such
+    as block weights (1e-86, 1) with matrix entries up to 1e83; there the
+    unnormalised product over e edges overflows to inf, and the resulting
+    garbage can come back *negative*, i.e. as a spurious counterexample.  With
+    every entry at most 1 no product can overflow, and if a quantity underflows
+    to exactly 0 the point is rejected rather than believed.
     """
     theta, psi = unpack(np.asarray(x, float), k, optimize_weights)
     B = np.exp(np.clip(theta, -700.0, 700.0))
     a = weights_from_psi(psi) if optimize_weights else np.asarray(weights, float)
+    F, status = evaluate(g, a, B)
+    if status != "ok" or not np.isfinite(F):
+        return REJECT, np.zeros_like(np.asarray(x, float))
 
-    p = float(a @ B @ a)
-    t = float(contract(plan_for(g.n, g.edges), a, B))
-    if not (p > 0 and t > 0 and np.isfinite(p) and np.isfinite(t)):
-        return 1e100, np.zeros_like(np.asarray(x, float))
-
+    mx = float(np.max(B))
+    B = B / mx
     _, _, dF_dS, dF_da, _, _ = gradients(g, a, B)
-    F = float(np.log(t) - g.m * np.log(p))
     grad_theta = dF_dS * B  # chain rule through S = exp(theta)
     if optimize_weights:
         grad_psi = a * (dF_da - float(a @ dF_da))

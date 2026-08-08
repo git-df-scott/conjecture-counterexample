@@ -1,11 +1,15 @@
-=== Sidorenko search: 1 candidates, 0 dropped for width, 0 already done ===
-[  1/1] C_4                    n= 4 e= 4 w=3 neg-control lattice_kernels= 91608 exh_tiers=4 min_F=-1.776e-15 exact_floor=624/390625 no counterexample  (41s)
-
-=== SUMMARY ===
-outcome: no counterexample found
-graphs processed: 1  {'neg-control': 1}
-exact kernel verdicts: 91,608   fully exhaustive tiers: 4
-continuous starts: 90
-positive controls that failed to trigger: none
-negative controls that wrongly triggered: none
--> results/sidorenko/summary.json
+=== Sidorenko search: 42 candidates, 0 dropped for width, 0 already done ===
+[  1/42] C_3                    n= 3 e= 3 w=3 pos-control lattice_kernels=     1 exh_tiers=0 min_F=-4.416e+02 exact_floor=-1/8 control ok: violation detected as expected  (0s)
+[  2/42] C_5                    n= 5 e= 5 w=3 pos-control lattice_kernels=    10 exh_tiers=0 min_F=-2.648e+02 exact_floor=-1/32 control ok: violation detected as expected  (0s)
+[  3/42] K_4                    n= 4 e= 6 w=4 pos-control lattice_kernels=     5 exh_tiers=0 min_F=-4.048e+02 exact_floor=-1/64 control ok: violation detected as expected  (0s)
+[  4/42] Petersen               n=10 e=15 w=5 pos-control lattice_kernels=     3 exh_tiers=0 min_F=-2.254e+02 exact_floor=-1/32768 control ok: violation detected as expected  (0s)
+[  5/42] P_3                    n= 3 e= 2 w=2 neg-control lattice_kernels=131571 exh_tiers=4 min_F=-1.776e-15 exact_floor=981533/1719926784000 no counterexample  (43s)
+[  6/42] P_5                    n= 5 e= 4 w=2 neg-control lattice_kernels=131571 exh_tiers=4 min_F=-1.776e-15 exact_floor=87/4096 no counterexample  (20s)
+[  7/42] C_4                    n= 4 e= 4 w=3 neg-control lattice_kernels=131571 exh_tiers=4 min_F=-2.665e-15 exact_floor=1295/1679616 no counterexample  (19s)
+[  8/42] C_6                    n= 6 e= 6 w=3 neg-control lattice_kernels=131571 exh_tiers=4 min_F=-5.684e-14 exact_floor=15624/244140625 no counterexample  (47s)
+[  9/42] C_8                    n= 8 e= 8 w=3 neg-control lattice_kernels=131571 exh_tiers=4 min_F=-6.365e-06 exact_floor=255/65536 no counterexample  (16s)
+[ 10/42] K_{2,2}                n= 4 e= 4 w=3 neg-control lattice_kernels=131571 exh_tiers=4 min_F=-1.776e-15 exact_floor=4744/390625 no counterexample  (20s)
+[ 11/42] K_{2,3}                n= 5 e= 6 w=3 neg-control lattice_kernels=131571 exh_tiers=4 min_F=-5.684e-14 exact_floor=127/4096 no counterexample  (27s)
+[ 12/42] K_{3,3}                n= 6 e= 9 w=4 neg-control lattice_kernels=131571 exh_tiers=4 min_F=-5.684e-14 exact_floor=2176782335/101559956 no counterexample  (45s)
+[ 13/42] K_{3,4}                n= 7 e=12 w=4 neg-control lattice_kernels=131571 exh_tiers=4 min_F=-1.137e-13 exact_floor=2251799813685247/472 no counterexample  (66s)
+[ 14/42] K_{4,4}                n= 8 e=16 w=5 neg-control lattice_kernels=131571 exh_tiers=4 min_F=-3.553e-15 exact_floor=477046975/4294967296 no counterexample  (90s)
