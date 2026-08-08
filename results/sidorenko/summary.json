@@ -2,20 +2,25 @@
  "conjecture": "Sidorenko: t(H, W) >= t(K_2, W)^{e(H)} for every bipartite H",
  "outcome": "no counterexample found",
  "counterexamples": [],
- "graphs_processed": 1,
+ "bipartite_graphs_with_exact_min_deficit_zero": 84,
+ "bipartite_graphs_without_a_fully_exhausted_tier": [],
+ "numerical_rejects_total": 0,
+ "graphs_processed": 88,
  "by_role": {
-  "neg-control": 1
+  "hard": 67,
+  "pos-control": 4,
+  "neg-control": 17
  },
- "hard_graphs": 0,
- "lattice_kernels_decided_total": 91608,
- "fully_exhaustive_tiers_total": 4,
- "continuous_starts_total": 90,
- "float_floor_min_over_hard_graphs": null,
- "float_floor_max_over_hard_graphs": null,
+ "hard_graphs": 67,
+ "lattice_kernels_decided_total": 10117114,
+ "fully_exhaustive_tiers_total": 327,
+ "continuous_starts_total": 5834,
+ "float_floor_min_over_hard_graphs": -2.842170943040401e-14,
+ "float_floor_max_over_hard_graphs": -1.0842021724855044e-15,
  "float_trigger_threshold": -1e-09,
  "exact_floor_is_zero_for_all_hard_graphs": true,
  "positive_controls_that_failed_to_trigger": [],
  "negative_controls_that_wrongly_triggered": [],
  "graphs_dropped_for_width": [],
- "seconds": 41.10794186592102
+ "seconds": 2547.399558544159
 }

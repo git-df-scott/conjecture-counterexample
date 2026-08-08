@@ -1,0 +1,538 @@
+{
+ "graphs": [
+  {
+   "graph": "B3x4_8",
+   "role": "hard",
+   "witnesses": 4,
+   "ok": true
+  },
+  {
+   "graph": "B3x4_17",
+   "role": "hard",
+   "witnesses": 4,
+   "ok": true
+  },
+  {
+   "graph": "B3x4_20",
+   "role": "hard",
+   "witnesses": 4,
+   "ok": true
+  },
+  {
+   "graph": "B3x4_25",
+   "role": "hard",
+   "witnesses": 4,
+   "ok": true
+  },
+  {
+   "graph": "B3x5_10",
+   "role": "hard",
+   "witnesses": 4,
+   "ok": true
+  },
+  {
+   "graph": "B3x5_12",
+   "role": "hard",
+   "witnesses": 4,
+   "ok": true
+  },
+  {
+   "graph": "B3x5_15",
+   "role": "hard",
+   "witnesses": 4,
+   "ok": true
+  },
+  {
+   "graph": "B3x5_24",
+   "role": "hard",
+   "witnesses": 4,
+   "ok": true
+  },
+  {
+   "graph": "B3x5_28",
+   "role": "hard",
+   "witnesses": 4,
+   "ok": true
+  },
+  {
+   "graph": "B3x5_32",
+   "role": "hard",
+   "witnesses": 4,
+   "ok": true
+  },
+  {
+   "graph": "B3x5_35",
+   "role": "hard",
+   "witnesses": 4,
+   "ok": true
+  },
+  {
+   "graph": "B3x5_37",
+   "role": "hard",
+   "witnesses": 4,
+   "ok": true
+  },
+  {
+   "graph": "B3x5_39",
+   "role": "hard",
+   "witnesses": 4,
+   "ok": true
+  },
+  {
+   "graph": "B3x5_42",
+   "role": "hard",
+   "witnesses": 4,
+   "ok": true
+  },
+  {
+   "graph": "B3x5_45",
+   "role": "hard",
+   "witnesses": 4,
+   "ok": true
+  },
+  {
+   "graph": "B3x5_48",
+   "role": "hard",
+   "witnesses": 4,
+   "ok": true
+  },
+  {
+   "graph": "B3x5_57",
+   "role": "hard",
+   "witnesses": 4,
+   "ok": true
+  },
+  {
+   "graph": "B3x5_64",
+   "role": "hard",
+   "witnesses": 4,
+   "ok": true
+  },
+  {
+   "graph": "B4x4_7",
+   "role": "hard",
+   "witnesses": 4,
+   "ok": true
+  },
+  {
+   "graph": "B4x4_15",
+   "role": "hard",
+   "witnesses": 4,
+   "ok": true
+  },
+  {
+   "graph": "B4x4_17",
+   "role": "hard",
+   "witnesses": 4,
+   "ok": true
+  },
+  {
+   "graph": "B4x4_20",
+   "role": "hard",
+   "witnesses": 4,
+   "ok": true
+  },
+  {
+   "graph": "B4x4_23",
+   "role": "hard",
+   "witnesses": 4,
+   "ok": true
+  },
+  {
+   "graph": "B4x4_26",
+   "role": "hard",
+   "witnesses": 4,
+   "ok": true
+  },
+  {
+   "graph": "B4x4_27",
+   "role": "hard",
+   "witnesses": 4,
+   "ok": true
+  },
+  {
+   "graph": "B4x4_29",
+   "role": "hard",
+   "witnesses": 4,
+   "ok": true
+  },
+  {
+   "graph": "B4x4_31",
+   "role": "hard",
+   "witnesses": 4,
+   "ok": true
+  },
+  {
+   "graph": "B4x4_32",
+   "role": "hard",
+   "witnesses": 4,
+   "ok": true
+  },
+  {
+   "graph": "B4x4_35",
+   "role": "hard",
+   "witnesses": 4,
+   "ok": true
+  },
+  {
+   "graph": "B4x4_37",
+   "role": "hard",
+   "witnesses": 4,
+   "ok": true
+  },
+  {
+   "graph": "B4x4_40",
+   "role": "hard",
+   "witnesses": 4,
+   "ok": true
+  },
+  {
+   "graph": "B4x4_41",
+   "role": "hard",
+   "witnesses": 4,
+   "ok": true
+  },
+  {
+   "graph": "B4x4_42",
+   "role": "hard",
+   "witnesses": 4,
+   "ok": true
+  },
+  {
+   "graph": "B4x4_44",
+   "role": "hard",
+   "witnesses": 4,
+   "ok": true
+  },
+  {
+   "graph": "B4x4_46",
+   "role": "hard",
+   "witnesses": 4,
+   "ok": true
+  },
+  {
+   "graph": "B4x4_47",
+   "role": "hard",
+   "witnesses": 4,
+   "ok": true
+  },
+  {
+   "graph": "B4x4_51",
+   "role": "hard",
+   "witnesses": 4,
+   "ok": true
+  },
+  {
+   "graph": "B4x4_54",
+   "role": "hard",
+   "witnesses": 4,
+   "ok": true
+  },
+  {
+   "graph": "B4x4_56",
+   "role": "hard",
+   "witnesses": 4,
+   "ok": true
+  },
+  {
+   "graph": "B4x4_62",
+   "role": "hard",
+   "witnesses": 4,
+   "ok": true
+  },
+  {
+   "graph": "B4x4_64",
+   "role": "hard",
+   "witnesses": 4,
+   "ok": true
+  },
+  {
+   "graph": "B4x4_70",
+   "role": "hard",
+   "witnesses": 4,
+   "ok": true
+  },
+  {
+   "graph": "B4x4_72",
+   "role": "hard",
+   "witnesses": 4,
+   "ok": true
+  },
+  {
+   "graph": "B4x4_74",
+   "role": "hard",
+   "witnesses": 4,
+   "ok": true
+  },
+  {
+   "graph": "B4x4_77",
+   "role": "hard",
+   "witnesses": 4,
+   "ok": true
+  },
+  {
+   "graph": "B4x4_83",
+   "role": "hard",
+   "witnesses": 4,
+   "ok": true
+  },
+  {
+   "graph": "C_3",
+   "role": "pos-control",
+   "witnesses": 0,
+   "ok": true
+  },
+  {
+   "graph": "C_5",
+   "role": "pos-control",
+   "witnesses": 0,
+   "ok": true
+  },
+  {
+   "graph": "K_4",
+   "role": "pos-control",
+   "witnesses": 0,
+   "ok": true
+  },
+  {
+   "graph": "Petersen",
+   "role": "pos-control",
+   "witnesses": 0,
+   "ok": true
+  },
+  {
+   "graph": "P_3",
+   "role": "neg-control",
+   "witnesses": 4,
+   "ok": true
+  },
+  {
+   "graph": "P_5",
+   "role": "neg-control",
+   "witnesses": 4,
+   "ok": true
+  },
+  {
+   "graph": "C_4",
+   "role": "neg-control",
+   "witnesses": 4,
+   "ok": true
+  },
+  {
+   "graph": "C_6",
+   "role": "neg-control",
+   "witnesses": 4,
+   "ok": true
+  },
+  {
+   "graph": "C_8",
+   "role": "neg-control",
+   "witnesses": 4,
+   "ok": true
+  },
+  {
+   "graph": "K_{2,2}",
+   "role": "neg-control",
+   "witnesses": 4,
+   "ok": true
+  },
+  {
+   "graph": "K_{2,3}",
+   "role": "neg-control",
+   "witnesses": 4,
+   "ok": true
+  },
+  {
+   "graph": "K_{3,3}",
+   "role": "neg-control",
+   "witnesses": 4,
+   "ok": true
+  },
+  {
+   "graph": "K_{3,4}",
+   "role": "neg-control",
+   "witnesses": 4,
+   "ok": true
+  },
+  {
+   "graph": "K_{4,4}",
+   "role": "neg-control",
+   "witnesses": 4,
+   "ok": true
+  },
+  {
+   "graph": "K_{4,5}",
+   "role": "neg-control",
+   "witnesses": 4,
+   "ok": true
+  },
+  {
+   "graph": "Q_3",
+   "role": "neg-control",
+   "witnesses": 4,
+   "ok": true
+  },
+  {
+   "graph": "Q_4",
+   "role": "neg-control",
+   "witnesses": 3,
+   "ok": true
+  },
+  {
+   "graph": "star+edge",
+   "role": "neg-control",
+   "witnesses": 4,
+   "ok": true
+  },
+  {
+   "graph": "K_{5,5}-C_{10}",
+   "role": "hard",
+   "witnesses": 4,
+   "ok": true
+  },
+  {
+   "graph": "K_{6,6}-C_{12}",
+   "role": "hard",
+   "witnesses": 3,
+   "ok": true
+  },
+  {
+   "graph": "K_{7,7}-C_{14}",
+   "role": "hard",
+   "witnesses": 3,
+   "ok": true
+  },
+  {
+   "graph": "K_{5,5}-PM",
+   "role": "hard",
+   "witnesses": 4,
+   "ok": true
+  },
+  {
+   "graph": "K_{6,6}-PM",
+   "role": "hard",
+   "witnesses": 3,
+   "ok": true
+  },
+  {
+   "graph": "K_{7,7}-PM",
+   "role": "hard",
+   "witnesses": 3,
+   "ok": true
+  },
+  {
+   "graph": "Heawood",
+   "role": "hard",
+   "witnesses": 4,
+   "ok": true
+  },
+  {
+   "graph": "Moebius-Kantor",
+   "role": "hard",
+   "witnesses": 3,
+   "ok": true
+  },
+  {
+   "graph": "Pappus",
+   "role": "hard",
+   "witnesses": 3,
+   "ok": true
+  },
+  {
+   "graph": "Desargues",
+   "role": "hard",
+   "witnesses": 3,
+   "ok": true
+  },
+  {
+   "graph": "Nauru",
+   "role": "hard",
+   "witnesses": 3,
+   "ok": true
+  },
+  {
+   "graph": "grid_3x3",
+   "role": "neg-control",
+   "witnesses": 4,
+   "ok": true
+  },
+  {
+   "graph": "grid_3x4",
+   "role": "hard",
+   "witnesses": 4,
+   "ok": true
+  },
+  {
+   "graph": "grid_4x4",
+   "role": "hard",
+   "witnesses": 4,
+   "ok": true
+  },
+  {
+   "graph": "theta_3-3-3",
+   "role": "hard",
+   "witnesses": 4,
+   "ok": true
+  },
+  {
+   "graph": "theta_2-4-4",
+   "role": "hard",
+   "witnesses": 4,
+   "ok": true
+  },
+  {
+   "graph": "theta_3-3-5",
+   "role": "hard",
+   "witnesses": 4,
+   "ok": true
+  },
+  {
+   "graph": "theta_4-4-4",
+   "role": "hard",
+   "witnesses": 4,
+   "ok": true
+  },
+  {
+   "graph": "double(C_5)",
+   "role": "neg-control",
+   "witnesses": 4,
+   "ok": true
+  },
+  {
+   "graph": "sub1(K_4)",
+   "role": "hard",
+   "witnesses": 4,
+   "ok": true
+  },
+  {
+   "graph": "PG(2,2)-incidence",
+   "role": "hard",
+   "witnesses": 4,
+   "ok": true
+  },
+  {
+   "graph": "C_6+diag-path",
+   "role": "hard",
+   "witnesses": 4,
+   "ok": true
+  },
+  {
+   "graph": "cube-minus-edge",
+   "role": "hard",
+   "witnesses": 4,
+   "ok": true
+  },
+  {
+   "graph": "K33-plus-subdiv-edge",
+   "role": "neg-control",
+   "witnesses": 4,
+   "ok": true
+  }
+ ],
+ "witness_checks": 327,
+ "witness_mismatches": [],
+ "certificate_checks": 88,
+ "certificate_mismatches": [],
+ "claim_violations": [],
+ "all_agree": true
+}

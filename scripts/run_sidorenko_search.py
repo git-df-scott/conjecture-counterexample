@@ -47,6 +47,14 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, "results", "sidorenko")
 
 
+def shard_files():
+    """Every shard of the search log, so resume and summary see all passes."""
+    import glob
+
+    return sorted(glob.glob(os.path.join(OUT, "search.jsonl"))
+                  + glob.glob(os.path.join(OUT, "search.*.jsonl")))
+
+
 def role_of(g):
     if g.bipartition() is None:
         return "pos-control"
@@ -99,6 +107,11 @@ def main():
     ap.add_argument("--no-enumeration", action="store_true")
     ap.add_argument("--restart", action="store_true")
     ap.add_argument("--only", type=str, default=None, help="substring filter on graph names")
+    ap.add_argument("--shard", type=str, default="",
+                    help="write to search.<shard>.jsonl instead of search.jsonl so "
+                         "several disjoint passes can run concurrently without "
+                         "interleaving appends into one file; resume and summary "
+                         "read every shard")
     ap.add_argument("--roles", type=str, nargs="+", default=None,
                     choices=["hard", "neg-control", "pos-control"],
                     help="restrict to these roles; the enumeration is dominated by "
@@ -107,7 +120,7 @@ def main():
     args = ap.parse_args()
 
     os.makedirs(OUT, exist_ok=True)
-    jsonl = os.path.join(OUT, "search.jsonl")
+    jsonl = os.path.join(OUT, f"search.{args.shard}.jsonl" if args.shard else "search.jsonl")
     logf = open(os.path.join(OUT, "run.log"), "a")
 
     def log(msg):
@@ -118,8 +131,8 @@ def main():
     done = set()
     if args.restart:
         open(jsonl, "w").close()
-    elif os.path.exists(jsonl):
-        with open(jsonl) as fh:
+    for path in shard_files():
+        with open(path) as fh:
             for line in fh:
                 try:
                     done.add(json.loads(line)["graph"])
@@ -229,19 +242,23 @@ def main():
                 json.dump(counterexample, fh, indent=1, default=str)
             break
 
-    summarize(jsonl, log, time.time() - t0, dropped)
+    summarize(log, time.time() - t0, dropped)
     return 2 if counterexample else 0
 
 
-def summarize(jsonl, log, seconds, dropped):
-    recs = []
-    if os.path.exists(jsonl):
-        with open(jsonl) as fh:
+def summarize(log, seconds, dropped):
+    recs, seen = [], set()
+    for path in shard_files():
+        with open(path) as fh:
             for line in fh:
                 try:
-                    recs.append(json.loads(line))
+                    r = json.loads(line)
                 except Exception:
-                    pass
+                    continue
+                if r["graph"] in seen:
+                    continue
+                seen.add(r["graph"])
+                recs.append(r)
     by_role = {}
     for r in recs:
         by_role.setdefault(r["role"], []).append(r)

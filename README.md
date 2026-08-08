@@ -10,7 +10,7 @@ the machinery.
 
 | subproject | conjecture | status | certification |
 | --- | --- | --- | --- |
-| `sidorenko/` | Sidorenko's conjecture (open) | no counterexample found | exact integer, complete in both directions |
+| `sidorenko/` | Sidorenko's conjecture (open) | no counterexample found; 10.1M kernels decided exactly, minimum deficit exactly 0 | exact integer, complete in both directions |
 | `mahler/` | Mahler conjecture in dim 4 (open) | no counterexample found; floor at 32/3 | exact rational, sound in the counterexample direction |
 
 ## Sidorenko's conjecture
@@ -136,13 +136,75 @@ counted as `numerical_rejects` when they do not survive.
   must not (proven-positive classes, exhaustively swept), and that the
   measured local vanishing order equals the girth.
 * `scripts/run_sidorenko_search.py` — the search. Resumable (one JSONL
-  record per graph), aborts on a certified bipartite violation.
+  record per graph), aborts on a certified bipartite violation. `--roles
+  hard` concentrates the budget on graphs in no proven class; `--shard`
+  lets disjoint passes run concurrently without interleaving appends.
+* `scripts/spot_certify_sidorenko.py` — replays every recorded lattice
+  witness and certificate through the independent pure-stdlib path.
 
 ### Results
 
-`results/sidorenko/`: `controls.json`, `search.jsonl` (one record per
-graph: local analysis, lattice verdicts, search trace, exact
-certificate), `summary.json`, `run.log`.
+**No counterexample found.** 88 graphs, 67 of them in no known-positive
+class, up to 24 vertices and 42 edges.
+
+| | |
+| --- | --- |
+| exactly decided integer kernels | 10,117,114 |
+| fully exhausted kernel families | 327 |
+| bipartite graphs whose exhausted families have exact minimum deficit **0** | 84 / 84 |
+| continuous multi-start optimizations | 5,834 |
+| float floor over the 67 hard graphs | −2.8e−14 … −1.1e−15 (trigger at −1e−09) |
+| candidate hits discarded on recheck | 0 |
+| local vanishing order ≠ girth | 0 graphs |
+
+The certified statement per graph is `lat_min = 0(exact)`: over every
+integer kernel family that was exhausted, the exact minimum of the deficit
+is **exactly zero**, attained at the constant kernels — computed as the
+sign of an integer, with no tolerance. The float floors sit at `1e-14`,
+which is contraction round-off at the constant kernel, five orders of
+magnitude above the trigger.
+
+Notable hard cases, all clean:
+
+| H | n | e | girth | kernels decided | exhausted tiers |
+| --- | --- | --- | --- | --- | --- |
+| `K_{5,5}` − `C_10` (cited smallest open case) | 10 | 15 | 4 | 131,571 | 4 |
+| Heawood = PG(2,2) incidence | 14 | 21 | 6 | 99,296 | 4 |
+| Möbius–Kantor | 16 | 24 | 6 | 60,413 | 3 |
+| Pappus | 18 | 27 | 6 | 21,999 | 3 |
+| Desargues | 20 | 30 | 6 | 13,195 | 3 |
+| Nauru | 24 | 36 | 6 | 7,217 | 3 |
+| `K_{t,t}` − PM / − Hamilton cycle, t = 5,6,7 | 10–14 | 15–42 | 4 | 12k–132k | 3–4 |
+| grids, theta graphs, subdivisions | 8–16 | 9–24 | 4–8 | 132k | 4 |
+
+Plus all 46 connected bipartite graphs with parts up to 4+4 that lie in
+**no** known-positive class (the other 166 enumerated graphs are proven
+cases and were skipped as redundant with the 17 negative controls).
+
+Independent re-verification (`scripts/spot_certify_sidorenko.py`): the
+lattice tier decides kernels with int64 numpy elimination in min-fill
+order; the certifier decides them with pure-Python integer elimination in
+min-degree order — separate implementations sharing no code. All **327**
+recorded lattice witnesses and all **88** stored certificates agree, with
+0 mismatches.
+
+`results/sidorenko/`: `controls.json`, `search.jsonl` +
+`search.enum.jsonl` (one record per graph: local analysis, lattice
+verdicts, search trace, exact certificate), `summary.json`,
+`spot_certification.json`, `run.log`.
+
+### What this does and does not establish
+
+It does not resolve Sidorenko's conjecture, and no search of this kind
+could: the conjecture quantifies over all graphons and all bipartite `H`,
+while this covers finitely many `H` at finite block resolution. What it
+does establish, unconditionally and in exact arithmetic, is that the
+deficit is nonnegative on every kernel in 327 fully enumerated families
+across 84 bipartite graphs — including every case the literature flags as
+hard — with a pipeline demonstrated to detect violations when they exist
+(6 positive controls certified, with exact deficits −1/8 through
+−1/32768). The honest reading of a negative result at this scale is that
+it is consistent with the conjecture and locates no weak spot.
 
 ### Tests
 
